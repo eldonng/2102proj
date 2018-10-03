@@ -8,8 +8,10 @@
 <h2>Create New Account</h2>
   <ul>
 	<form name="display" action="register.php" method="POST">
-      <li>Name:
-      <input type="text" name="name" /></li>
+      <li>First Name:
+      <input type="text" name="firstname" /></li>
+      <li>Last Name:
+      <input type="text" name="lastname" /></li>
 	  <li>Email:
       <input type="text" name="email"/></li>
 	  <li>Password:
@@ -22,7 +24,7 @@
   	// Connect to the database. Please change the password in the following line accordingly
     $db     = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=cowcowmilk");	
     if (isset($_POST['create'])) {
-		$query = "INSERT INTO users VALUES('$_POST[email]', '$_POST[password]', '$_POST[name]')";
+		$query = "INSERT INTO users VALUES('$_POST[email]', '$_POST[password]', '$_POST[firstname]', '$_POST[lastname]')";
 		$result    = pg_query($db, $query);		// To store the result row
 		if($result) {
 			echo "<ul>Account Created Successfully</ul>
