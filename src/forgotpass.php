@@ -17,7 +17,7 @@
   </ul>
   <?php
   	// Connect to the database. Please change the password in the following line accordingly
-    $db     = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=eldon");	
+    $db     = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=cowcowmilk");	
     $result = pg_query($db, "SELECT * FROM users WHERE email = '$_POST[email]'");		// Query template
     $row    = pg_fetch_assoc($result);		// To store the result row
     if (isset($_POST['resetpw'])) {
@@ -27,7 +27,7 @@
 		} else {
             $reset = pg_query($db, "UPDATE users SET passWord = '$_POST[psw]' WHERE email = '$_POST[email]'");	
             echo "<ul>Password Reset Successful!</ul>
-            <li><a href=\"login.php\">Return to Login Page</a></li>";
+            <li><a href=\"index.php\">Return to Login Page</a></li>";
         }
 	}
     ?>  
