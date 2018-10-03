@@ -113,7 +113,7 @@
     }
 
     .rg-hed .userProfile{
-      grid-column: 2 / span 5;
+      grid-column: 3 / span 4;
       align-self: center;
       justify-self: end;
       font-size: 1em;
