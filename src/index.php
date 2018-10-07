@@ -26,6 +26,10 @@
     session_start();
   	// Connect to the database. Please change the password in the following line accordingly
     $db     = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=cowcowmilk");	
+    if (!$db) {
+      echo "An error occured when connecting to DB.\n";
+      exit;	
+    }
     $result = pg_query($db, "SELECT * FROM users where password = '$_POST[psw]' AND email = '$_POST[email]'");
 	$row    = pg_fetch_assoc($result);
      if (isset($_POST['login'])) {

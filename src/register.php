@@ -22,7 +22,11 @@
   
   <?php
   	// Connect to the database. Please change the password in the following line accordingly
-    $db     = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=cowcowmilk");	
+    $db     = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=cowcowmilk");
+    if (!$db) {
+      echo "An error occured when connecting to DB.\n";
+      exit;	
+    }	
     if (isset($_POST['create'])) {
 		$query = "INSERT INTO users VALUES('$_POST[email]', '$_POST[password]', '$_POST[firstname]', '$_POST[lastname]')";
 		$result    = pg_query($db, $query);		// To store the result row
