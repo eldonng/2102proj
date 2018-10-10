@@ -13,8 +13,13 @@
 
 <?php
 session_start();
-   $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=cowcowmilk");
-   if (!$db) {
+if($_SESSION['email'] != null) {
+  $user = $_SESSION['email'];
+}  else {
+  header("Location: index.php"); /* Redirect browser */
+}
+  $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
+  if (!$db) {
     echo "An error occured when connecting to DB.\n";
     exit;
   }  
