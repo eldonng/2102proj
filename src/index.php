@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <head>
   <title>CrowdFund | Login</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -32,12 +32,9 @@
       padding: 20px;
     }
     nav ul li a:hover, nav ul li a:active{
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 8px;
       border: 1px solid #447314;
       text-shadow: #31540c 0 1px 0;
       background: #6aa436;
-      background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
       color: #fff;
     }
     .form-container {
@@ -137,10 +134,10 @@
       header("Location: home.php"); /* Redirect browser */
     }
   	// Connect to the database. Please change the password in the following line accordingly
-    $db     = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");	
+    $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
     if (!$db) {
       echo "An error occured when connecting to DB.\n";
-      exit;	
+      exit;
     }
     $result = pg_query($db, "SELECT email FROM users where password = '$_POST[psw]' AND email = '$_POST[email]'");
 	$row    = pg_fetch_assoc($result);
@@ -155,6 +152,6 @@
         exit();
       }
 	 }
-    ?>  
+    ?>
 </body>
 </html>
