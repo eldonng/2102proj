@@ -35,6 +35,7 @@
       color: white;
       padding: 20px;
     }
+
     nav ul li a:hover, nav ul li a:active{
       border-bottom: 2px solid #ccc;
       padding-bottom: 8px;
@@ -44,73 +45,89 @@
       background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
       color: #fff;
     }
+
+    body {
+      font: 400 15px/1.5 "Roboto", sans-serif;
+      display: inline-block;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      min-width: 100%;
+
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    table {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      border-spacing: 10px;
+      border-collapse: separate;
+    }
+
+    td {
+      border: 2px solid #c9b7a2;
+      padding-bottom: 3px;
+      padding-top: 3px;
+    }
+
     .form-container {
-    background: white;
-    text-decoration: none;
-    text-align: center;
-
-
-     }
-  .form-field {
-     border: 2px solid #c9b7a2;
-     background: white;
-     color: black  ;
-     padding:8px;
-     width:280px;
-     }
-  .form-fieldLong {
-    border: 2px solid #c9b7a2;
-    background: white;
-    color: black;
-    padding:8px;
-    width:280px;
-    height: 70px;
+      background: white;
+      text-decoration: none;
+      text-align: center;
     }
 
-  .form-field:focus {
-     background: #fff;
-     border-color: #6CBEEC;
-     color: black;
+    .form-field {
+       border: 2px solid #c9b7a2;
+       background: white;
+       color: black  ;
+       padding:8px;
+       width:280px;
      }
-  .form-fieldLong:focus {
-    background: #fff;
-    border-color: #6CBEEC;
-    color: black;
+
+    .form-field:focus {
+       background: #fff;
+       border-color: #6CBEEC;
+       color: black;
+     }
+
+    .title-field {
+      margin-bottom:10px;
     }
-  .form-container h2 {
-     font-size:18px;
-     font-weight:bold;
-     text-align:center;
-      }
-  .form-title {
-     margin-bottom:10px;
-     color: black ;
+
+    .title-header {
+      margin-bottom:10px;
+      font-size: 30px;
+    }
+
+    .submit-container {
      }
-  .submit-container {
+    .submit-button {
+       border: 1px solid white;
+       background: black;
+       color: white;
+       padding: 8.5px 18px;
+       font-size: 14px;
+       text-decoration: none;
+       vertical-align: middle;
+       width: 150px;
      }
-  .submit-button {
-     border: 1px solid white;
-     background: black;
-     color: white;
-     padding: 8.5px 18px;
-     font-size: 14px;
-     text-decoration: none;
-     vertical-align: middle;
-     width: 300px;
+    .submit-button:hover {
+       border: 1px solid #447314;
+       text-shadow: #31540c 0 1px 0;
+       background: #6aa436;
+       background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
+       color: #fff;
      }
-  .submit-button:hover {
-     border: 1px solid #447314;
-     text-shadow: #31540c 0 1px 0;
-     background: #6aa436;
-     background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
-     color: #fff;
-     }
-  .submit-button:active {
-     text-shadow: #31540c 0 1px 0;
-     border: 1px solid #447314;
-     background: #8dc059;
-     background-image: -ms-linear-gradient(top, #6aa436 0%, #8dc059 100%);
-     color: #fff;
+    .submit-button:active {
+       text-shadow: #31540c 0 1px 0;
+       border: 1px solid #447314;
+       background: #8dc059;
+       background-image: -ms-linear-gradient(top, #6aa436 0%, #8dc059 100%);
+       color: #fff;
      }
 
   </style>
@@ -119,7 +136,7 @@
 
 <?php
 	session_start();
-	$db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=4or2jsqi");
+	$db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=cowcowmilk");
 	if (!db) {
 		echo "An error occured when connecting to DB.\n";
 		exit;
@@ -178,14 +195,14 @@
 	<table>
 		<thead>
 			<?php
-				echo "<th>";
+				echo "<th class='title-header'>";
 				echo $row['title'];
 				echo "</th>";
 			?>
 		</thead>
 		<tbody>
 			<?php
-				echo "<tr><td><div class="text-" Start Date: ".$row['startdate']."</td></tr>";
+				echo "<tr><td class='title-field'> Start Date: ".$row['startdate']."</td></tr>";
 				echo "<tr><td> End Date: ".$row['enddate']."</td></tr>";
 				echo "<tr><td> Category: ".$row['category']."</td></tr>";
 				echo "<tr><td> Description: ".$row['description']."</td></tr>";
@@ -196,9 +213,9 @@
 		</tbody>
 	</table>
 
-	<form name="view_project" action="viewproject.php?projectid="<?php echo $projectid;?> method="POST">
-  <li>Fund Amount</li>
-	<input type="text" name="amountfunded" />
+	<form class="form-container" name="view_project" action="viewproject.php?projectid="<?php echo $projectid;?> method="POST">
+  <div class="form-title">Fund Amount</div>
+	<input class="form-field" type="text" name="amountfunded" />
 	<input class="submit-button" type="submit" name="submit" />
 	</form>
 
