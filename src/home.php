@@ -79,13 +79,13 @@ session_start();
               echo "<tr>";
               echo "<td class='text ' data-title='Project Title'><a href=\"viewproject.php?projectid=".$row['projectid']."\">".$row['title']."</a></td>";              
               if ($row['pctamount'] >= 100){
-                echo "<td class='text' data-title='% Funded'><progress class=\"progress is-funded\" value=\"".$row['pctamount']."\" max=\"100\"></progress>
+                echo "<td class='text' data-title='% Funded'><progress class=\"progress is-funded show-value\" value=\"".$row['pctamount']."\" max=\"100\"></progress>
                 </td>";
               } else if ($row['pctamount'] >= 65){
-                echo "<td class='text' data-title='% Funded'><progress class=\"progress is-approaching\" value=\"".$row['pctamount']."\" max=\"100\"></progress>
+                echo "<td class='text' data-title='% Funded'><progress class=\"progress is-approaching show-value\" value=\"".$row['pctamount']."\" max=\"100\"></progress>
                 </td>";
               } else {
-                echo "<td class='text' data-title='% Funded'><progress class=\"progress is-starting\" value=\"".$row['pctamount']."\" max=\"100\"></progress>
+                echo "<td class='text' data-title='% Funded'><progress class=\"progress is-starting show-value\" value=\"".$row['pctamount']."\" max=\"100\">90%</progress>
                 </td>";
               }                
               echo "<td class='text' data-title='Target'>$".$row['targetamount']."</td>"; 

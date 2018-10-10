@@ -83,6 +83,35 @@ body {
   height: 1.5rem;
 }
 
+.progress.show-value {
+  position: relative;
+}
+
+.progress.show-value:after {
+  content: attr(value)'%';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: calc(1rem / 1.5);
+  line-height: 1rem;
+}
+
+.progress.show-value.is-small:after {
+  font-size: calc(0.75rem / 1.5);
+  line-height: 0.75rem;
+}
+
+.progress.show-value.is-medium:after {
+  font-size: calc(1.25rem / 1.5);
+  line-height: 1.25rem;
+}
+
+.progress.show-value.is-large:after {
+  font-size: calc(1.5rem / 1.5);
+  line-height: 1.5rem;
+}
+
 a {
   color: #222;
   text-decoration: none;
