@@ -207,8 +207,24 @@ a:hover {
 }
 
 .rg-dek {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   font-size: 1em;
 }
+
+.rg-dek .action-bar{
+  grid-column: 1 / span 3;
+  align-self: start;
+}
+
+.rg-dek .user-bar{
+  font-size: 0.9em;
+  grid-column: 4 / span 3;
+  grid-row: 1;
+  align-self: start;
+  justify-self: end;
+}
+
 
 .rg-dek form {
   display: inline-block;
@@ -305,6 +321,9 @@ td.number {
   .rg-hed {
   display: inline-block;
 }
+  .rg-dek {
+    display: inline-block;
+  }
   table.rg-table {
     width: 100%;
   }
