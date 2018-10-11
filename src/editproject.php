@@ -126,7 +126,7 @@
 
 <?php
 	session_start();
-	$db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
+	$db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
 	if (!db) {
 		echo "error connecting to DB.\n";
 		exit;

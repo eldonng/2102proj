@@ -18,18 +18,18 @@ if($_SESSION['email'] != null) {
 }  else {
   header("Location: index.php"); /* Redirect browser */
 }
-  $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
+$db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
   if (!$db) {
     echo "An error occured when connecting to DB.\n";
     exit;
   }
   $user = $_SESSION['email'];
   if (isset($_POST['submit'])) {
-      $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where upper(title) like upper('%$_POST[project_title]%')");
+      $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where upper(title) like upper('%$_POST[project_title]%') ORDER BY title");
   } else if (isset($_POST['showfunded'])) {
-    $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where (amountfund*100/targetamount) >= 100");
+    $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where (amountfund*100/targetamount) >= 100 ORDER BY title");
   } else {
-      $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised");
+      $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised ORDER BY title");
   }
   if (!$query) {
   echo "An error occured while querying DB.\n";
@@ -49,9 +49,8 @@ if($_SESSION['email'] != null) {
         </span>
         <span class='rg-dek'>
         <div class='user-bar'>
-          <a href="">Profile |</a>
-          <a href="logout.php">Logout |</a>
-          <a href="">Change Password</a>
+          <a href="">Profile</a> |
+          <a href="logout.php">Logout</a>
         </div>
         <div class='action-bar'>
           <form action="addproject.php">

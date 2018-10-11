@@ -116,8 +116,8 @@
 <header>
     <nav>
     <ul>
-      <li><a href="index.php"><i class="fas fa-home"></i> Login</a></li>
-      <li><a href="forgotpass.php"><i class="fas forgot-pass"></i> Forgot Password</a></li>
+      <li><a href="index.php"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+      <li><a href="forgotpass.php"><i class="fas fa-question"></i> Forgot Password</a></li>
     </ul>
   </nav>
   </header>
@@ -138,8 +138,8 @@
 
   <?php
   	// Connect to the database. Please change the password in the following line accordingly
-    $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
-    if (!$db) {
+    $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
+        if (!$db) {
       echo "An error occured when connecting to DB.\n";
       exit;
     }
