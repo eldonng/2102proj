@@ -133,8 +133,24 @@
     }
 
     .rg-dek {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
       font-size: 1em;
     }
+
+    .rg-dek .action-bar{
+      grid-column: 1 / span 3;
+      align-self: start;
+    }
+
+    .rg-dek .user-bar{
+      font-size: 0.9em;
+      grid-column: 4 / span 3;
+      grid-row: 1;
+      align-self: start;
+      justify-self: end;
+    }
+
 
     .rg-dek form {
       display: inline-block;
@@ -219,6 +235,112 @@
     table.rg-table th.number,
     td.number {
       text-align: right;
+    }
+
+    .progress {
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      border-radius: 290486px;
+      display: block;
+      height: 1rem;
+      overflow: hidden;
+      padding: 0;
+      width: 100%;
+    }
+
+    .progress::-webkit-progress-bar {
+      background-color: #dbdbdb;
+    }
+
+    .progress::-webkit-progress-value {
+      background-color: #4a4a4a;
+    }
+
+    .progress::-moz-progress-bar {
+      background-color: #4a4a4a;
+    }
+
+    .progress::-ms-fill {
+      background-color: #4a4a4a;
+      border: none;
+    }
+
+    .progress.is-approaching::-webkit-progress-value {
+      background-color: #3273dc;
+    }
+
+    .progress.is-approaching::-moz-progress-bar {
+      background-color: #3273dc;
+    }
+
+    .progress.is-approaching::-ms-fill {
+      background-color: #3273dc;
+    }
+
+    .progress.is-funded::-webkit-progress-value {
+      background-color: #23d160;
+    }
+
+    .progress.is-funded::-moz-progress-bar {
+      background-color: #23d160;
+    }
+
+    .progress.is-funded::-ms-fill {
+      background-color: #23d160;
+    }
+
+    .progress.is-starting::-webkit-progress-value {
+      background-color: #ffdd57;
+    }
+
+    .progress.is-starting::-moz-progress-bar {
+      background-color: #ffdd57;
+    }
+
+    .progress.is-starting::-ms-fill {
+      background-color: #ffdd57;
+    }
+
+    .progress.is-small {
+      height: 0.75rem;
+    }
+
+    .progress.is-medium {
+      height: 1.25rem;
+    }
+
+    .progress.is-large {
+      height: 1.5rem;
+    }
+
+    .progress.show-value {
+      position: relative;
+    }
+
+    .progress.show-value:after {
+      content: attr(value)'%';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: calc(1rem / 1.5);
+      line-height: 1rem;
+    }
+
+    .progress.show-value.is-small:after {
+      font-size: calc(0.75rem / 1.5);
+      line-height: 0.75rem;
+    }
+
+    .progress.show-value.is-medium:after {
+      font-size: calc(1.25rem / 1.5);
+      line-height: 1.25rem;
+    }
+
+    .progress.show-value.is-large:after {
+      font-size: calc(1.5rem / 1.5);
+      line-height: 1.5rem;
     }
 
     /* media queries */
@@ -331,6 +453,13 @@ session_start();
             echo ("<div class='userProfile'>Logged in as: ".$user."</div>")
           ?>
         </span>
+        <span class='rg-dek'>
+        <div class='user-bar'>
+          <a href="">Profile |</a>
+          <a href="logout.php">Logout |</a>
+          <a href="">Change Password</a>
+        </div>
+      </span>
       <thead>
         <tr>
           <th class='text '>Project Title</th>
@@ -343,20 +472,23 @@ session_start();
         <?php
           while ($row = pg_fetch_array($query)) {
             $projectid = $row['projectid'];
-              echo "<tr>";
-              echo "<td class='text' data-title='Project Title'><a href=\"viewproject.php?projectid=".$row['projectid']."\">".$row['title']."</a></td>";
-              if ($row['pctamount'] >= 100){
-                  echo "<td class='text' data-title='% Funded'><span id = 'target-reached'>".$row['pctamount']."%</span></td>";
-              } else if ($row['pctamount'] >= 65){
-                  echo "<td class='text' data-title='% Funded'><span id = 'target-near'>".$row['pctamount']."%</span></td>";
-              } else {
-                  echo "<td class='text' data-title='% Funded'>".$row['pctamount']."%</td>";
-              }
+            echo "<tr>";
+            echo "<td class='text ' data-title='Project Title'><a href=\"viewproject.php?projectid=".$row['projectid']."\">".$row['title']."</a></td>";
+            if ($row['pctamount'] >= 100){
+              echo "<td class='text' data-title='% Funded'><progress class=\"progress is-funded show-value\" value=\"".$row['pctamount']."\" max=\"100\"></progress>
+              </td>";
+            } else if ($row['pctamount'] >= 65){
+              echo "<td class='text' data-title='% Funded'><progress class=\"progress is-approaching show-value\" value=\"".$row['pctamount']."\" max=\"100\"></progress>
+              </td>";
+            } else {
+              echo "<td class='text' data-title='% Funded'><progress class=\"progress is-starting show-value\" value=\"".$row['pctamount']."\" max=\"100\">90%</progress>
+              </td>";
+            }
               echo "<td class='text' data-title='Target'>$".$row['targetamount']."</td>";
               echo "<td class='text' data-title='End Date'>".$row['enddate']."</td>";
               echo "<td class='text' data-title='Project Title'><a href=\"editproject.php?projectid=".$row['projectid']."\">
-                <button type='button' class='modifyButton'>Modify</button>
-              </a></td>";
+                <button type='button' class='modifyButton'>Modify</button></a>
+              </td>";
               echo "</tr>";
           }
           ?>

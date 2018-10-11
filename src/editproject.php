@@ -7,6 +7,7 @@
     <title>CrowdFund - Edit Project</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+
     <style>
 
     nav{
@@ -119,6 +120,113 @@
        background-image: -ms-linear-gradient(top, #6aa436 0%, #8dc059 100%);
        color: #fff;
        }
+
+       .progress {
+         -moz-appearance: none;
+         -webkit-appearance: none;
+         border: none;
+         border-radius: 290486px;
+         display: block;
+         height: 1rem;
+         overflow: hidden;
+         padding: 0;
+         width: 100%;
+       }
+
+       .progress::-webkit-progress-bar {
+         background-color: #dbdbdb;
+       }
+
+       .progress::-webkit-progress-value {
+         background-color: #4a4a4a;
+       }
+
+       .progress::-moz-progress-bar {
+         background-color: #4a4a4a;
+       }
+
+       .progress::-ms-fill {
+         background-color: #4a4a4a;
+         border: none;
+       }
+
+       .progress.is-approaching::-webkit-progress-value {
+         background-color: #3273dc;
+       }
+
+       .progress.is-approaching::-moz-progress-bar {
+         background-color: #3273dc;
+       }
+
+       .progress.is-approaching::-ms-fill {
+         background-color: #3273dc;
+       }
+
+       .progress.is-funded::-webkit-progress-value {
+         background-color: #23d160;
+       }
+
+       .progress.is-funded::-moz-progress-bar {
+         background-color: #23d160;
+       }
+
+       .progress.is-funded::-ms-fill {
+         background-color: #23d160;
+       }
+
+       .progress.is-starting::-webkit-progress-value {
+         background-color: #ffdd57;
+       }
+
+       .progress.is-starting::-moz-progress-bar {
+         background-color: #ffdd57;
+       }
+
+       .progress.is-starting::-ms-fill {
+         background-color: #ffdd57;
+       }
+
+       .progress.is-small {
+         height: 0.75rem;
+       }
+
+       .progress.is-medium {
+         height: 1.25rem;
+       }
+
+       .progress.is-large {
+         height: 1.5rem;
+       }
+
+       .progress.show-value {
+         position: relative;
+       }
+
+       .progress.show-value:after {
+         content: attr(value)'%';
+         position: absolute;
+         top: 0;
+         left: 50%;
+         transform: translateX(-50%);
+         font-size: calc(1rem / 1.5);
+         line-height: 1rem;
+       }
+
+       .progress.show-value.is-small:after {
+         font-size: calc(0.75rem / 1.5);
+         line-height: 0.75rem;
+       }
+
+       .progress.show-value.is-medium:after {
+         font-size: calc(1.25rem / 1.5);
+         line-height: 1.25rem;
+       }
+
+       .progress.show-value.is-large:after {
+         font-size: calc(1.5rem / 1.5);
+         line-height: 1.5rem;
+       }
+
 
     </style>
 
