@@ -144,8 +144,6 @@
   </header>
     <form class = "form-container" name="add_project" action="addproject.php" method="POST" >
         <div class ="form-title"><h2> Please enter project details</h2></div>
-      <div class="form-title">User Email: </div>
-      <input class="form-field" type="text" name="uemail" />
 
       <div class="form-title">Title: </div>
       <input class="form-field" type="text)" name="title" />
@@ -168,7 +166,7 @@
     </form>
   <?php
   	// Connect to the database. Please change the password in the following line accordingly
-    $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
+    $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
         if (!$db) {
       echo "An error occured when connecting to DB.\n";
       exit;
@@ -176,7 +174,7 @@
     $uniqueId = uniqid();
     $uniqueId8 = substr($uniqueId, 0, 8);
     if (isset($_POST['submit'])) {
-        $query = "INSERT INTO project_advertised(uemail, projectid, title, startdate, enddate, category, targetamount, description) VALUES('$_POST[uemail]', '$uniqueId8' , '$_POST[title]', '$_POST[startdate]', '$_POST[enddate]',
+        $query = "INSERT INTO project_advertised(uemail, projectid, title, startdate, enddate, category, targetamount, description) VALUES('$user', '$uniqueId8' , '$_POST[title]', '$_POST[startdate]', '$_POST[enddate]',
           '$_POST[category]', '$_POST[targetamount]', '$_POST[description]')";
         $result = pg_query($db, $query);
         if (!$result) {
