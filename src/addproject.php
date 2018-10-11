@@ -33,12 +33,9 @@
       padding: 20px;
     }
     nav ul li a:hover, nav ul li a:active{
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 8px;
       border: 1px solid #447314;
       text-shadow: #31540c 0 1px 0;
       background: #6aa436;
-      background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
       color: #fff;
     }
 
@@ -171,10 +168,10 @@
     </form>
   <?php
   	// Connect to the database. Please change the password in the following line accordingly
-    $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
+    $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
     if (!$db) {
       echo "An error occured when connecting to DB.\n";
-      exit;	
+      exit;
     }
     $uniqueId = uniqid();
     $uniqueId8 = substr($uniqueId, 0, 8);

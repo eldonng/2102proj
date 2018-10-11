@@ -36,12 +36,9 @@
       padding: 20px;
     }
     nav ul li a:hover, nav ul li a:active{
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 8px;
       border: 1px solid #447314;
       text-shadow: #31540c 0 1px 0;
       background: #6aa436;
-      background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
       color: #fff;
     }
     .form-container {

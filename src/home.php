@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>CrowdFund | Home</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
 
 </head>
@@ -18,11 +18,11 @@ if($_SESSION['email'] != null) {
 }  else {
   header("Location: index.php"); /* Redirect browser */
 }
-  $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
+  $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=cowcowmilk");
   if (!$db) {
     echo "An error occured when connecting to DB.\n";
     exit;
-  }  
+  }
   $user = $_SESSION['email'];
   if (isset($_POST['submit'])) {
       $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where upper(title) like upper('%$_POST[project_title]%')");
@@ -48,6 +48,12 @@ if($_SESSION['email'] != null) {
           ?>
         </span>
         <span class='rg-dek'>
+        <div class='user-bar'>
+          <a href="">Profile |</a>
+          <a href="logout.php">Logout |</a>
+          <a href="">Change Password</a>
+        </div>               
+        <div class='action-bar'>
           <form action="addproject.php">
             <button type="submit" id="createproject" />Add Project
             <i class="fa fa-plus"></i>
@@ -58,6 +64,13 @@ if($_SESSION['email'] != null) {
             <i class="fa fa-check"></i>
             </button>
           </form>
+          <form action="myprojects.php" method="POST">
+            <button type="submit" name="myprojects" id="createproject" />My Projects
+            <i class="fas fa-book"></i>
+            </button>
+          </form>
+        </div>   
+        
         </span>
       </caption>
       <form action="home.php" method="POST">
@@ -82,7 +95,7 @@ if($_SESSION['email'] != null) {
         <?php
           while ($row = pg_fetch_array($query)) {
               echo "<tr>";
-              echo "<td class='text ' data-title='Project Title'><a href=\"viewproject.php?projectid=".$row['projectid']."\">".$row['title']."</a></td>";              
+              echo "<td class='text ' data-title='Project Title'><a href=\"viewproject.php?projectid=".$row['projectid']."\">".$row['title']."</a></td>";
               if ($row['pctamount'] >= 100){
                 echo "<td class='text' data-title='% Funded'><progress class=\"progress is-funded show-value\" value=\"".$row['pctamount']."\" max=\"100\"></progress>
                 </td>";
@@ -92,8 +105,8 @@ if($_SESSION['email'] != null) {
               } else {
                 echo "<td class='text' data-title='% Funded'><progress class=\"progress is-starting show-value\" value=\"".$row['pctamount']."\" max=\"100\">90%</progress>
                 </td>";
-              }                
-              echo "<td class='text' data-title='Target'>$".$row['targetamount']."</td>"; 
+              }
+              echo "<td class='text' data-title='Target'>$".$row['targetamount']."</td>";
               echo "<td class='text' data-title='End Date'>".$row['enddate']."</td>";
               echo "</tr>";
           }
