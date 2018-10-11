@@ -2,7 +2,7 @@
 <head>
   <title>CrowdFund | Forgot Password</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <!DOCTYPE html>  
+  <!DOCTYPE html>
 <head>
   <title>CrowdFund | Login</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,7 +10,7 @@
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <style media="screen">
-    
+
      nav{
       background-color: black;
     }
@@ -115,7 +115,7 @@
 
 
   </style>
- 
+
 
 </head>
 <body>
@@ -134,7 +134,7 @@
       <div class="form-title">Email: </div>
       <input class="form-field" type="text" name="email" />
       <div class="form-title">Enter New Password: </div>
-      <input class="form-field" type="password)" name="psw" />
+      <input class="form-field" type="password") name="psw" />
       <div class="submit-container">
       <input class ="submit-button" type="submit" name="resetpw" value="Reset Password" />
       </div>
@@ -142,10 +142,10 @@
 
   <?php
   	// Connect to the database. Please change the password in the following line accordingly
-    $db     = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");	
+    $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
     if (!$db) {
       echo "An error occured when connecting to DB.\n";
-      exit;	
+      exit;
     }
 
     if (isset($_POST['resetpw'])) {
@@ -161,15 +161,15 @@
           echo 'alert("The email does not exist in database")';
           echo '</script>';
 	    	} else {
-          $reset = pg_query($db, "UPDATE users SET password = '$_POST[psw]' WHERE email = '$_POST[email]'");	
+          $reset = pg_query($db, "UPDATE users SET password = '$_POST[psw]' WHERE email = '$_POST[email]'");
           echo '<script language="javascript">';
           echo 'alert("Password Reset Successfully")';
           echo '</script>';
         }
       }
   }
-    ?>  
-	
-	
+    ?>
+
+
 </body>
 </html>

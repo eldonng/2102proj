@@ -2,7 +2,7 @@
 <head>
   <title>CrowdFund | Create New Account</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <!DOCTYPE html>  
+  <!DOCTYPE html>
 <head>
   <title>CrowdFund | Login</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,7 +10,7 @@
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <style media="screen">
-    
+
      nav{
       background-color: black;
     }
@@ -133,19 +133,19 @@
       <div class="form-title">Email Address: </div>
       <input class="form-field" type="text" name="email" />
       <div class="form-title">Password: </div>
-      <input class="form-field" type="password)" name="password" />
+      <input class="form-field" type="password") name="password" />
       <div class="submit-container">
       <input class ="submit-button" type="submit" name="create" value="Create Account" />
       </div>
     </form>
-  
+
   <?php
   	// Connect to the database. Please change the password in the following line accordingly
     $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
     if (!$db) {
       echo "An error occured when connecting to DB.\n";
-      exit;	
-    }	
+      exit;
+    }
     if (isset($_POST['create'])) {
       if($_POST[email] == null || $_POST[password] == null || $_POST[firstname] == null || $_POST[lastname] == null) {
         echo '<script language="javascript">';
@@ -165,6 +165,6 @@
         }
       }
     }
-	?>  
+	?>
 </body>
 </html>
