@@ -51,6 +51,75 @@
       min-width: 100%;
     }
 
+    .form-container {
+      background: white;
+      text-decoration: none;
+      text-align: center;
+
+
+       }
+    .form-field {
+       border: 2px solid #c9b7a2;
+       background: white;
+       color: black  ;
+       padding:8px;
+       width:280px;
+       }
+    .form-fieldLong {
+      border: 2px solid #c9b7a2;
+      background: white;
+      color: black;
+      padding:8px;
+      width:280px;
+      height: 70px;
+      }
+
+    .form-field:focus {
+       background: #fff;
+       border-color: #6CBEEC;
+       color: black;
+       }
+    .form-fieldLong:focus {
+      background: #fff;
+      border-color: #6CBEEC;
+      color: black;
+      }
+    .form-container h2 {
+       font-size:18px;
+       font-weight:bold;
+       text-align:center;
+        }
+    .form-title {
+       margin-bottom:10px;
+       color: black ;
+       }
+    .submit-container {
+       }
+    .submit-button {
+       border: 1px solid white;
+       background: black;
+       color: white;
+       padding: 8.5px 18px;
+       font-size: 14px;
+       text-decoration: none;
+       vertical-align: middle;
+       width: 300px;
+       }
+    .submit-button:hover {
+       border: 1px solid #447314;
+       text-shadow: #31540c 0 1px 0;
+       background: #6aa436;
+       background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
+       color: #fff;
+       }
+    .submit-button:active {
+       text-shadow: #31540c 0 1px 0;
+       border: 1px solid #447314;
+       background: #8dc059;
+       background-image: -ms-linear-gradient(top, #6aa436 0%, #8dc059 100%);
+       color: #fff;
+       }
+
     </style>
 
 </head>
@@ -100,39 +169,23 @@
   </nav>
 	</header>
 
-	<table>
-    <h3> Old data </h3>
-		<tbody>
-			<?php
-        echo "<tr><td> Title: ".$row['title']."</td></tr>";
-				echo "<tr><td> Start Date: ".$row['startdate']."</td></tr>";
-				echo "<tr><td> End Date: ".$row['enddate']."</td></tr>";
-				echo "<tr><td> Category: ".$row['category']."</td></tr>";
-				echo "<tr><td> Description: ".$row['description']."</td></tr>";
-				echo "<tr><td> Target Amount: $".$row['targetamount']."</td></tr>";
-				echo "<tr><td> Amount Funded: $".$row['amountfund']."</td></tr>";
-				echo "<tr><td> Current Status: ".$row['status']."</td></tr>";
-			?>
-		</tbody>
-	</table>
-
-    <h3> New data </h3>
     <form class = "form-container" name="add_project" action="editproject.php?projectid=<?php echo $projectid;?>" method="POST" >
+      <h2> Update Project Details </h2>
       <div class="form-title">Title: </div>
-      <input class="form-field" type="text)" name="title" />
+      <input class="form-field" type="text)" name="title" value ="<?php echo $row[title];?>" />
       <div class="form-title">Start Date: </div>
-        <input class="form-field" type="date" name="startdate" />
+        <input class="form-field" type="date" name="startdate"  value ="<?php echo $row[startdate];?>" />
 
       <div class="form-title">End Date: </div>
-      <input class="form-field" type="date" name="enddate" />
+      <input class="form-field" type="date" name="enddate"  value ="<?php echo $row[enddate];?>"/>
 
       <div class="form-title">Category: </div>
-      <input class="form-field" type="text" name="category" />
+      <input class="form-field" type="text" name="category" value ="<?php echo $row[category];?>"/>
       <div class="form-title">Target Amount: </div>
-      <input class="form-field" type="text" name="targetamount" />
+      <input class="form-field" type="text" name="targetamount" value ="<?php echo $row[targetamount];?>"/>
 
       <div class="form-title">Description: </div>
-        <textarea class="form-fieldLong" type="varchar(256)" name="description"/></textarea>
+        <textarea class="form-fieldLong" type="varchar(256)" name="description"/><?php echo $row[description];?></textarea>
         <div class="submit-container">
         <input class ="submit-button" type="submit" name="submit" />
       </div>

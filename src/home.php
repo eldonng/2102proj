@@ -18,7 +18,7 @@ if($_SESSION['email'] != null) {
 }  else {
   header("Location: index.php"); /* Redirect browser */
 }
-  $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=cowcowmilk");
+  $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
   if (!$db) {
     echo "An error occured when connecting to DB.\n";
     exit;
@@ -52,7 +52,7 @@ if($_SESSION['email'] != null) {
           <a href="">Profile |</a>
           <a href="logout.php">Logout |</a>
           <a href="">Change Password</a>
-        </div>               
+        </div>
         <div class='action-bar'>
           <form action="addproject.php">
             <button type="submit" id="createproject" />Add Project
@@ -69,8 +69,8 @@ if($_SESSION['email'] != null) {
             <i class="fas fa-book"></i>
             </button>
           </form>
-        </div>   
-        
+        </div>
+
         </span>
       </caption>
       <form action="home.php" method="POST">
