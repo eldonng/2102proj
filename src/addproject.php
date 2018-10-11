@@ -168,8 +168,8 @@
     </form>
   <?php
   	// Connect to the database. Please change the password in the following line accordingly
-    $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
-    if (!$db) {
+    $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
+        if (!$db) {
       echo "An error occured when connecting to DB.\n";
       exit;
     }

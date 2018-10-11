@@ -121,8 +121,8 @@
 <header>
     <nav>
     <ul>
-      <li><a href="index.php"><i class="fas fa-login"></i> Login</a></li>
-      <li><a href="register.php"><i class="fas fa-sign-up"></i> Sign Up</a></li>
+      <li><a href="index.php"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+      <li><a href="register.php"><i class="fas fa-plus"></i> Sign Up</a></li>
     </ul>
   </nav>
   </header>
