@@ -130,7 +130,7 @@
       <div class="form-title">Email Address: </div>
       <input class="form-field" type="text" name="email" />
       <div class="form-title">Password: </div>
-      <input class="form-field" type="password)" name="password" />
+      <input class="form-field" type="password") name="password" />
       <div class="submit-container">
       <input class ="submit-button" type="submit" name="create" value="Create Account" />
       </div>

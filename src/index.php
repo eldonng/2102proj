@@ -123,7 +123,7 @@
       <div class="form-title">Email: </div>
       <input class="form-field" type="text" name="email" />
       <div class="form-title">Password: </div>
-      <input class="form-field" type="password)" name="psw" />
+      <input class="form-field" type="password") name="psw" />
       <div class="submit-container">
       <input class ="submit-button" type="submit" name="login" value="Login"/>
       </div>
@@ -134,7 +134,7 @@
       header("Location: home.php"); /* Redirect browser */
     }
   	// Connect to the database. Please change the password in the following line accordingly
-    $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
+    $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
     if (!$db) {
       echo "An error occured when connecting to DB.\n";
       exit;
