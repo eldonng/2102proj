@@ -313,14 +313,8 @@ session_start();
     exit;
   }
   $user = $_SESSION['email'];
-  if (isset($_POST['submit'])) {
-      $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where upper(title) like upper('%$_POST[project_title]%')");
-  } else if (isset($_POST['showfunded'])) {
-    $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where (amountfund*100/targetamount) >= 100");
-  } else {
-      $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where
-      uemail = '$user'");
-  }
+  $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where
+  uemail = '$user'");
   if (!$query) {
   echo "An error occured while querying DB.\n";
   exit;
