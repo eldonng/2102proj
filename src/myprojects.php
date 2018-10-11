@@ -429,7 +429,7 @@
 
 <?php
 session_start();
-$db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
+$db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
    if (!$db) {
     echo "An error occured when connecting to DB.\n";
     exit;
@@ -456,8 +456,7 @@ $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres pass
         <span class='rg-dek'>
         <div class='user-bar'>
           <a href="">Profile |</a>
-          <a href="logout.php">Logout |</a>
-          <a href="">Change Password</a>
+          <a href="logout.php">Logout</a>
         </div>
       </span>
       <thead>
