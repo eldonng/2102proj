@@ -318,7 +318,8 @@ session_start();
   } else if (isset($_POST['showfunded'])) {
     $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where (amountfund*100/targetamount) >= 100");
   } else {
-      $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised");
+      $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where
+      uemail = '$user'");
   }
   if (!$query) {
   echo "An error occured while querying DB.\n";
@@ -364,11 +365,6 @@ session_start();
               </a></td>";
               echo "</tr>";
           }
-        if (isset($_POST['submit'])) {
-          echo "editing project";
-          $projectid = $row['projectid'];
-          echo $projectid;
-        }
           ?>
       </tbody>
     </table>
