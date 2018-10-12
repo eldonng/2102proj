@@ -121,112 +121,6 @@
        color: #fff;
        }
 
-       .progress {
-         -moz-appearance: none;
-         -webkit-appearance: none;
-         border: none;
-         border-radius: 290486px;
-         display: block;
-         height: 1rem;
-         overflow: hidden;
-         padding: 0;
-         width: 100%;
-       }
-
-       .progress::-webkit-progress-bar {
-         background-color: #dbdbdb;
-       }
-
-       .progress::-webkit-progress-value {
-         background-color: #4a4a4a;
-       }
-
-       .progress::-moz-progress-bar {
-         background-color: #4a4a4a;
-       }
-
-       .progress::-ms-fill {
-         background-color: #4a4a4a;
-         border: none;
-       }
-
-       .progress.is-approaching::-webkit-progress-value {
-         background-color: #3273dc;
-       }
-
-       .progress.is-approaching::-moz-progress-bar {
-         background-color: #3273dc;
-       }
-
-       .progress.is-approaching::-ms-fill {
-         background-color: #3273dc;
-       }
-
-       .progress.is-funded::-webkit-progress-value {
-         background-color: #23d160;
-       }
-
-       .progress.is-funded::-moz-progress-bar {
-         background-color: #23d160;
-       }
-
-       .progress.is-funded::-ms-fill {
-         background-color: #23d160;
-       }
-
-       .progress.is-starting::-webkit-progress-value {
-         background-color: #ffdd57;
-       }
-
-       .progress.is-starting::-moz-progress-bar {
-         background-color: #ffdd57;
-       }
-
-       .progress.is-starting::-ms-fill {
-         background-color: #ffdd57;
-       }
-
-       .progress.is-small {
-         height: 0.75rem;
-       }
-
-       .progress.is-medium {
-         height: 1.25rem;
-       }
-
-       .progress.is-large {
-         height: 1.5rem;
-       }
-
-       .progress.show-value {
-         position: relative;
-       }
-
-       .progress.show-value:after {
-         content: attr(value)'%';
-         position: absolute;
-         top: 0;
-         left: 50%;
-         transform: translateX(-50%);
-         font-size: calc(1rem / 1.5);
-         line-height: 1rem;
-       }
-
-       .progress.show-value.is-small:after {
-         font-size: calc(0.75rem / 1.5);
-         line-height: 0.75rem;
-       }
-
-       .progress.show-value.is-medium:after {
-         font-size: calc(1.25rem / 1.5);
-         line-height: 1.25rem;
-       }
-
-       .progress.show-value.is-large:after {
-         font-size: calc(1.5rem / 1.5);
-         line-height: 1.5rem;
-       }
-
 
     </style>
 
@@ -234,13 +128,14 @@
 
 <?php
 	session_start();
-	$db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
+	$db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
 	if (!db) {
 		echo "error connecting to DB.\n";
 		exit;
 	}
 	$projectid = $_GET["projectid"];
 	$uemail = $_SESSION["email"];
+  
 	$query = "SELECT title, startdate, enddate, category, amountfund, targetamount, description, status FROM project_advertised WHERE projectid = '$projectid'";
 	$result = pg_query($db, $query);
 	$row = pg_fetch_assoc($result);
@@ -250,7 +145,7 @@
   if (isset($_POST['submit'])) {
     $query2 = "UPDATE project_advertised SET title = '$_POST[title]', startdate = '$_POST[startdate]', enddate = '$_POST[enddate]',
     category = '$_POST[category]', targetamount= '$_POST[targetamount]', description = '$_POST[description]'
-    WHERE projectid = '$projectid'";
+    WHERE projectid = '$projectid' AND uemail = '$uemail'";
     $result2 = pg_query($db, $query2);
     if (!$result2) {
       echo '<script language="javascript">';
