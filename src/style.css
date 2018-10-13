@@ -335,7 +335,7 @@ td.number {
   }
 
   .rg-header span{
-    display: inline;
+    display: inline-block;
   }  
 
   table.rg-table {
