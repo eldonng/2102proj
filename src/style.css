@@ -127,7 +127,7 @@ a:hover {
 
 .search {
   width: 100%;
-  position: relative
+  position: relative;
 }
 
 .searchTerm {
@@ -162,10 +162,10 @@ a:hover {
 /*Resize the wrap to see the search bar change!*/
 
 .wrap {
+  text-align: center;
   width: 30%;
-  position: relative;
-  top: 50%;
-  left: 50%;
+  position: relative;  
+  left:45%;
   transform: translate(-50%, -50%);
 }
 
@@ -313,17 +313,23 @@ td.number {
 
 /* media queries */
 
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width: 800px) {
   .rg-container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
   }
-  .rg-hed {
-  display: inline-block;
-}
-  .rg-dek {
-    display: inline-block;
+
+  .rg-header {
+    max-width: 600px;
+    display: block;
+    text-align: center;
   }
+
+  .rg-header span{
+    display: inline-block;
+  }  
+
   table.rg-table {
     width: 100%;
   }
