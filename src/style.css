@@ -240,20 +240,19 @@ a:hover {
   color: #f4f4f4;
   cursor: pointer;
   border-radius: 12px;  
-  transition: border 0.3s, background-color 0.3s;
+  transition: opacity 0.3s;
 }
 
 .rg-dek form button#createproject:hover {
-  background-color: rgb(83, 83, 83);
-  border: 3px solid rgb(83, 83, 83);
+  opacity: 0.8;
   transform: translateY(-1px);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .rg-dek form button#createproject:active {
   transform: translateY(0px);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
 }
-
 
 /* table */
 
