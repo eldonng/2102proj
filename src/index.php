@@ -133,13 +133,14 @@
     if($_SESSION['email'] != null) {
       header("Location: home.php"); /* Redirect browser */
     }
+    $hashpw = hash('sha256', hash('sha256', $_POST[email]).$_POST[psw]);
   	// Connect to the database. Please change the password in the following line accordingly
     $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
         if (!$db) {
       echo "An error occured when connecting to DB.\n";
       exit;
     }
-    $result = pg_query($db, "SELECT email FROM users where password = '$_POST[psw]' AND email = '$_POST[email]'");
+    $result = pg_query($db, "SELECT email FROM users where password = '$hashpw' AND email = '$_POST[email]'");
 	$row    = pg_fetch_assoc($result);
      if (isset($_POST['login'])) {
 		  if(!$row) {

@@ -149,7 +149,8 @@
         echo 'alert("Please do not leave any fields empty")';
         echo '</script>';
       } else {
-		    $query = "INSERT INTO users VALUES('$_POST[email]', '$_POST[password]', '$_POST[firstname]', '$_POST[lastname]')";
+        $hashpw = hash('sha256', hash('sha256', $_POST[email]).$_POST[password]);
+		    $query = "INSERT INTO users VALUES('$_POST[email]', '$hashpw', '$_POST[firstname]', '$_POST[lastname]')";
 		    $result    = pg_query($db, $query);		// To store the result row
 		    if($result) {
           echo '<script language="javascript">';
