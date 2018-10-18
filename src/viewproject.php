@@ -417,14 +417,11 @@
 		</tbody>
     <tbody style="float: right">
       <?php
-        echo "<tr><td class='table-fieldOwner'> Project Owner: </td></tr>";
-        echo "<tr><td class='table-fieldOwnerName'>".$row['firstname']." ".$row['lastname']."</td></tr>";
-        echo "<tr><td class='table-field'> Start Date: </td>";
-        echo "<td class='table-field'>".$row['startdate']."</td></tr>";
-        echo "<tr><td class='table-date'> Funding ends on ".$row['enddate']."</td></tr>";
-        // echo "<td class='table-date'>".$row['enddate']."</td></tr>";
-        // echo "<tr><td class='table-field'> Amount Funded: </td>";
-        echo "<tr><td class='table-field'>$".$row['amountfund']."</td></tr>";
+        echo "<tr><td class='table-field'> <b>Funding</b> </td></tr>";
+        echo "<tr><td class='table-field'> Project Owner: </td>";
+        echo "<td class='table-field'>".$row['firstname']." ".$row['lastname']."</td></tr>";
+        // echo "<tr><td class='table-field'> Start Date: </td>";
+        // echo "<td class='table-field'>".$row['startdate']."</td></tr>";
         echo "<tr>";
         if ($row['pctamount'] >= 100){
           echo "<td class='text' data-title='% Funded'><progress class=\"progress is-funded show-value\" value=\"".$row['pctamount']."\" max=\"100\"></progress>
@@ -437,8 +434,8 @@
           </td>";
         }
         echo "</tr>";
-        // echo "<tr><td class='table-field'> Target Amount: </td>";
-        echo "<tr><td class='table-field'>Goal of $".$row['targetamount']."</td></tr>";
+        echo "<tr><td class='table-field'>$".$row['amountfund']." of Goal $".$row['targetamount']."</td></tr>";
+        echo "<tr><td class='table-date'> Funding ends on ".$row['enddate']."</td></tr>";
         echo "<tr><td class='table-field'> Current Status: </td>";
         echo "<td class='table-field'>".$row['status']."</td></tr>";
         echo "<tr><form class='form-container' name='view_project' method='POST'>";
@@ -449,13 +446,6 @@
       ?>
     </tbody>
 	</table>
-
-  <!-- <form class="form-container" name="view_project" method="POST">
-  <div class="form-title">Fund Amount</div>
-	<input class="form-field" type="text" name="amountfunded" />
-	<input class="submit-button" type="submit" name="submit" />
-	</form> -->
-  </div>
 </body>
 
 </html>
