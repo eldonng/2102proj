@@ -127,7 +127,7 @@ a:hover {
 
 .search {
   width: 100%;
-  position: relative;
+  position: relative
 }
 
 .searchTerm {
@@ -162,10 +162,10 @@ a:hover {
 /*Resize the wrap to see the search bar change!*/
 
 .wrap {
-  text-align: center;
   width: 30%;
-  position: relative;  
-  left:45%;
+  position: relative;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 
@@ -189,9 +189,9 @@ a:hover {
 }
 
 .rg-hed {
-  display: grid; 
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  font-weight: bold;     
+  font-weight: bold;
 }
 
 .rg-hed .title {
@@ -313,23 +313,17 @@ td.number {
 
 /* media queries */
 
-
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
   .rg-container {
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
   }
-
-  .rg-header {
-    max-width: 600px;
-    display: block;
-    text-align: center;
-  }
-
-  .rg-header span{
+  .rg-hed {
+  display: inline-block;
+}
+  .rg-dek {
     display: inline-block;
-  }  
-
+  }
   table.rg-table {
     width: 100%;
   }

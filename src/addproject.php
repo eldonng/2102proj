@@ -71,8 +71,8 @@
     border: 2px solid #c9b7a2;
     background: white;
     color: black;
-    padding:8px;
-    width:280px;
+    padding: 8px;
+    width: 280px;
     height: 70px;
     }
 
