@@ -56,16 +56,14 @@
       background: white;
       text-decoration: none;
       text-align: center;
-
-
-       }
+    }
     .form-field {
        border: 2px solid #c9b7a2;
        background: white;
        color: black  ;
        padding:8px;
        width:280px;
-       }
+    }
     .form-fieldLong {
       border: 2px solid #c9b7a2;
       background: white;
@@ -73,18 +71,18 @@
       padding:8px;
       width:280px;
       height: 70px;
-      }
+    }
 
     .form-field:focus {
        background: #fff;
        border-color: #6CBEEC;
        color: black;
-       }
+     }
     .form-fieldLong:focus {
       background: #fff;
       border-color: #6CBEEC;
       color: black;
-      }
+    }
     .form-container h2 {
        font-size:18px;
        font-weight:bold;
@@ -120,114 +118,6 @@
        background-image: -ms-linear-gradient(top, #6aa436 0%, #8dc059 100%);
        color: #fff;
        }
-
-       .progress {
-         -moz-appearance: none;
-         -webkit-appearance: none;
-         border: none;
-         border-radius: 290486px;
-         display: block;
-         height: 1rem;
-         overflow: hidden;
-         padding: 0;
-         width: 100%;
-       }
-
-       .progress::-webkit-progress-bar {
-         background-color: #dbdbdb;
-       }
-
-       .progress::-webkit-progress-value {
-         background-color: #4a4a4a;
-       }
-
-       .progress::-moz-progress-bar {
-         background-color: #4a4a4a;
-       }
-
-       .progress::-ms-fill {
-         background-color: #4a4a4a;
-         border: none;
-       }
-
-       .progress.is-approaching::-webkit-progress-value {
-         background-color: #3273dc;
-       }
-
-       .progress.is-approaching::-moz-progress-bar {
-         background-color: #3273dc;
-       }
-
-       .progress.is-approaching::-ms-fill {
-         background-color: #3273dc;
-       }
-
-       .progress.is-funded::-webkit-progress-value {
-         background-color: #23d160;
-       }
-
-       .progress.is-funded::-moz-progress-bar {
-         background-color: #23d160;
-       }
-
-       .progress.is-funded::-ms-fill {
-         background-color: #23d160;
-       }
-
-       .progress.is-starting::-webkit-progress-value {
-         background-color: #ffdd57;
-       }
-
-       .progress.is-starting::-moz-progress-bar {
-         background-color: #ffdd57;
-       }
-
-       .progress.is-starting::-ms-fill {
-         background-color: #ffdd57;
-       }
-
-       .progress.is-small {
-         height: 0.75rem;
-       }
-
-       .progress.is-medium {
-         height: 1.25rem;
-       }
-
-       .progress.is-large {
-         height: 1.5rem;
-       }
-
-       .progress.show-value {
-         position: relative;
-       }
-
-       .progress.show-value:after {
-         content: attr(value)'%';
-         position: absolute;
-         top: 0;
-         left: 50%;
-         transform: translateX(-50%);
-         font-size: calc(1rem / 1.5);
-         line-height: 1rem;
-       }
-
-       .progress.show-value.is-small:after {
-         font-size: calc(0.75rem / 1.5);
-         line-height: 0.75rem;
-       }
-
-       .progress.show-value.is-medium:after {
-         font-size: calc(1.25rem / 1.5);
-         line-height: 1.25rem;
-       }
-
-       .progress.show-value.is-large:after {
-         font-size: calc(1.5rem / 1.5);
-         line-height: 1.5rem;
-       }
-
-
     </style>
 
 </head>
@@ -241,12 +131,19 @@
 	}
 	$projectid = $_GET["projectid"];
 	$uemail = $_SESSION["email"];
-	$query = "SELECT title, startdate, enddate, category, amountfund, targetamount, description, status FROM project_advertised WHERE projectid = '$projectid'";
+	$query = "SELECT uemail, title, startdate, enddate, category, amountfund, targetamount, description, status FROM project_advertised WHERE projectid = '$projectid'";
 	$result = pg_query($db, $query);
 	$row = pg_fetch_assoc($result);
 	if (!$result) {
 		echo "Query failed.";
 	}
+  // if ($row[uemail] != $uemail) {
+  //   // header("Location: home.php"); /* Redirect browser */
+    // echo '<script type="text/javascript">
+    //       alert("You cannot edit projects that are not yours!");
+    //       window.location="home.php";
+    //       </script>';
+  // }
   if (isset($_POST['submit'])) {
     $query2 = "UPDATE project_advertised SET title = '$_POST[title]', startdate = '$_POST[startdate]', enddate = '$_POST[enddate]',
     category = '$_POST[category]', targetamount= '$_POST[targetamount]', description = '$_POST[description]'
@@ -264,7 +161,25 @@
     $query3 = "SELECT title, startdate, enddate, category, amountfund, targetamount, description, status FROM project_advertised WHERE projectid = '$projectid'";
     $result3 = pg_query($db, $query3);
     $row = pg_fetch_assoc($result3);
-}
+  }
+  if (isset($_POST['delete'])) {
+    $query4 ="DELETE from fund WHERE pprojectid = '$projectid'";
+    $result4 = pg_query($db, $query4);
+    $query5 = "DELETE from project_advertised WHERE projectid = '$projectid'";
+    $result5 = pg_query($db, $query5);
+    if (!$result5) {
+      echo '<script language="javascript">';
+      echo 'alert("Failed to delete project!")';
+      echo '</script>';
+    } else {
+      echo '<script language="javascript">';
+      echo 'alert("Succesfully deleted project!")';
+      echo '</script>';
+    }
+    echo '<script type="text/javascript">
+          window.location="myprojects.php";
+          </script>';
+  }
 ?>
 
 <body>
@@ -297,9 +212,22 @@
         <div class="submit-container">
         <input class ="submit-button" type="submit" name="submit" />
       </div>
+      <div class="submit-container">
+        <input class ="submit-button" type="submit" name="delete" value="Delete" onclick ="return validate_delete()" />
+      </div>
     </form>
 
 </body>
 
 
 </html>
+
+<script>
+function validate_delete() {
+  if(confirm("Are you sure you want to delete this project?")) {
+    return true;
+  } else {
+    return false;
+  }
+}
+</script>

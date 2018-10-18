@@ -343,6 +343,9 @@
       line-height: 1.5rem;
     }
 
+    .project-action button {
+      display: inline;
+    }
     /* media queries */
 
     @media screen and (max-width: 600px) {
@@ -440,7 +443,7 @@ $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres passwor
   if (!$query) {
   echo "An error occured while querying DB.\n";
   exit;
-}
+  }
 ?>
 
 <body>
@@ -485,12 +488,15 @@ $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres passwor
             }
               echo "<td class='text' data-title='Target'>$".$row['targetamount']."</td>";
               echo "<td class='text' data-title='End Date'>".$row['enddate']."</td>";
-              echo "<td class='text' data-title='Project Title'><a href=\"editproject.php?projectid=".$row['projectid']."\">
+              echo "<td class='text project.action' data-title='Project Title'><a href=\"editproject.php?projectid=".$row['projectid']."\">
                 <button type='button' class='modifyButton'>Modify</button></a>
-              </td>";
+                </td>";
               echo "</tr>";
           }
+          // if (isset($_POST['delete'])) {
+
           ?>
+
       </tbody>
     </table>
   </div>

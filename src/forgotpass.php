@@ -158,7 +158,8 @@
           echo 'alert("The email does not exist in database")';
           echo '</script>';
 	    	} else {
-          $reset = pg_query($db, "UPDATE users SET password = '$_POST[psw]' WHERE email = '$_POST[email]'");
+          $hashpw = hash('sha256', hash('sha256', $_POST[email]).$_POST[psw]);
+          $reset = pg_query($db, "UPDATE users SET password = '$hashpw' WHERE email = '$_POST[email]'");
           echo '<script language="javascript">';
           echo 'alert("Password Reset Successfully")';
           echo '</script>';
