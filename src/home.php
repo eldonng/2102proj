@@ -49,7 +49,8 @@ $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres pass
         </span>
         <span class='rg-dek'>
         <div class='user-bar'>
-          <a href="">Profile</a> |
+          <a href="profile.php">Profile</a> |
+          <a href="changepw.php">Change Password</a> |
           <a href="logout.php">Logout</a>
         </div>
         <div class='action-bar'>
