@@ -8,61 +8,40 @@
     <link rel="stylesheet" <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <style media="screen">
 
-    nav{
-      background-color: black;
-    }
-
-    nav ul{
-      margin:0;
-      list-style-type: none;
-      text-align: center;
-      text-color: white;
-    }
-
-    nav ul li{
-      display: inline-block;
-      text-align: center;
-      padding: 20px;
-      height: 2%;
-      text-color: white;
-    }
-
-    nav ul li a{
-      text-decoration: none;
-      color: white;
-      padding: 20px;
-    }
-    nav ul li a:hover, nav ul li a:active{
-      border: 1px solid #447314;
-      text-shadow: #31540c 0 1px 0;
-      background: #6aa436;
-      color: #fff;
-    }
-
-
-  body {
-    font: 400 15px/1.5 "Roboto", sans-serif;
-    display: inline-block;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    min-width: 100%;
-    background: #e9e9e9;
+  a {
+    color: #222;
+    text-decoration: none;
   }
 
-  table, th, td {
+  a:visited {
+    color: #222;
+  }
+
+  a:hover {
+    color: grey;
+  }
+
+  body {
+    padding-top: 10px;
+    font: 400 18px/1.5 "Roboto", sans-serif;
+    background-color: #f4f4f4;
+    width: 100%;
+    margin: auto;
+  }
+
+  table {
     border-spacing: 10px;
     border-collapse: separate;
-    width: 20%;
+    width: 30%;
     padding: 8px;
-    background: #e9e9e9;
+    background: #f4f4f4;
     }
 
   tbody {
-    border: 1px solid #c9b7a2;
+    /* border: 1px solid #c9b7a2; */
     /* float: left; */
-    /* width: 45%; */
-    background: #e9e9e9;
+    width: 30%;
+    background: #f4f4f4;
   }
 
   textarea {
@@ -70,7 +49,7 @@
   }
 
   .form-container {
-    background: #e9e9e9;
+    background: #f4f4f4;
     text-decoration: none;
     text-align: center;
     margin-left: auto;
@@ -82,7 +61,7 @@
      background: white;
      color: black  ;
      padding:8px;
-     width:280px;
+     width:200px;
      }
   .form-fieldLong {
     border: 2px solid #c9b7a2;
@@ -94,10 +73,10 @@
     }
 
   .form-field:focus {
-     background: #fff;
-     border-color: #6CBEEC;
-     color: black;
-     }
+    background: #fff;
+    border-color: #6CBEEC;
+    color: black;
+    }
   .form-fieldLong:focus {
     background: #fff;
     border-color: #6CBEEC;
@@ -111,10 +90,65 @@
   .form-title {
      margin-bottom:10px;
      color: black ;
+     text-align: left;
      }
-  .submit-container {
+
+     .rg-container {
+       width: 85%;
+       margin: auto;
+       padding: 1em 0.5em;
+       color: #222;
      }
-  .submit-button {
+
+     .rg-header {
+       margin-bottom: 1em;
+       text-align: left;
+     }
+
+     .rg-header>* {
+       display: block;
+     }
+
+     .rg-hed {
+       display: grid;
+       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+       font-weight: bold;
+     }
+
+     .rg-hed .title {
+       font-size: 1.8em;
+       grid-column: 1 / span 1;
+     }
+
+     .rg-hed .userProfile{
+       grid-column: 3 / span 4;
+       align-self: end;
+       justify-self: end;
+       font-size: 1em;
+     }
+
+     .rg-dek {
+       display: grid;
+       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+       font-size: 1em;
+     }
+
+     .rg-dek .action-bar{
+       grid-column: 1 / span 3;
+       align-self: start;
+     }
+
+     .rg-dek .user-bar{
+       font-size: 0.9em;
+       grid-column: 4 / span 3;
+       grid-row: 1;
+       align-self: start;
+       justify-self: end;
+     }
+
+   .submit-container {
+     }
+   .submit-button {
      border: 1px solid white;
      background: black;
      color: white;
@@ -124,20 +158,29 @@
      vertical-align: middle;
      width: 300px;
      }
-  .submit-button:hover {
+   .submit-button:hover {
      border: 1px solid #447314;
      text-shadow: #31540c 0 1px 0;
      background: #6aa436;
      background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
      color: #fff;
      }
-  .submit-button:active {
+   .submit-button:active {
      text-shadow: #31540c 0 1px 0;
      border: 1px solid #447314;
      background: #8dc059;
      background-image: -ms-linear-gradient(top, #6aa436 0%, #8dc059 100%);
      color: #fff;
      }
+
+   @media screen and (max-width: 600px) {
+     .rg-hed {
+       display: inline-block;
+   }
+     .rg-dek {
+       display: inline-block;
+     }
+   }
 
     </style>
 </head>
@@ -151,7 +194,7 @@
       echo "An error occured when connecting to DB.\n";
       exit;
     }
-    if($_SESSION['email'] != null) {
+    if ($_SESSION['email'] != null) {
       $user = $_SESSION['email'];
     }  else {
       header("Location: index.php"); /* Redirect browser */
@@ -162,24 +205,57 @@
     if (!$result) {
       echo "Query failed";
     }
+
+    $query2 = "SELECT COUNT(DISTINCT projectid) as numproj FROM project_advertised WHERE uemail='$user'";
+    $result2 = pg_query($db, $query2);
+    $row2 = pg_fetch_assoc($result2);
+    if (!$result2) {
+      echo "Num Projects Query failed";
+    }
+
+    $query3 = "SELECT COUNT(DISTINCT pprojectid) as numfunded FROM fund WHERE uemail='$user'";
+    $result3 = pg_query($db, $query3);
+    $row3 = pg_fetch_assoc($result3);
+    if (!$result3) {
+      echo "Num Funded Query failed";
+    }
 ?>
-  <header>
-    <nav>
-    <ul>
-      <li><a href="home.php"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-    </ul>
-  </nav>
-  </header>
+  <div class='rg-container'>
+  <caption class='rg-header'>
+    <span class='rg-hed'>
+      <a class='title' href='home.php'>CrowdFund</a>
+      <?php
+        echo ("<div class='userProfile'>Logged in as: ".$uemail."</div>")
+      ?>
+    </span>
+    <span class='rg-dek'>
+    <div class='user-bar'>
+      <a href="changepw.php">Change Password |</a>
+      <a href="logout.php">Logout</a>
+    </div>
+    </span>
+  </caption>
 
   <table class="form-container">
 		<tbody>
 			<?php
         echo "<tr><td class='form-title'> <b>Profile</b> </td></tr>";
         echo "<tr><td class='form-field'> Name: ".$row['firstname']." ".$row['lastname']."</td></tr>";
-        echo "<tr><td class='form-field'> Password: ".$row['password']."</td></tr>";
+        echo "<tr><td class='form-field'> Email: ".$row['email']."</td></tr>";
+        echo "<tr><td class='form-field'> Total Projects: ".$row2['numproj']."</td></tr>";
+        echo "<tr><td class='form-field'> No. of Projects Funded: ".$row3['numfunded']."</td></tr>";
 			?>
 		</tbody>
+    <!-- <tbody style="float: right">
+      <?php
+        echo "<tr><td class='form-title'> <b>Profile</b> </td></tr>";
+        echo "<tr><td class='form-field'> Name: ".$row['firstname']." ".$row['lastname']."</td></tr>";
+        echo "<tr><td class='form-field'> Email: ".$row['email']."</td></tr>";
+        echo "<tr><td class='form-field'> Total Projects: ".$row2['numproj']."</td></tr>";
+        echo "<tr><td class='form-field'> No. of Projects Funded: ".$row3['numfunded']."</td></tr>";
+			?>
+    </tbody> -->
 	</table>
+  </div>
 </body>
 </html>
