@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CrowdFund - Profile Page</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <style media="screen">
 
     nav{
@@ -146,7 +146,7 @@
 <?php
     session_start();
     // Connect to the database. Please change the password in the following line accordingly
-    $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
+    $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres password=eldon");
         if (!$db) {
       echo "An error occured when connecting to DB.\n";
       exit;
@@ -156,7 +156,7 @@
     }  else {
       header("Location: index.php"); /* Redirect browser */
     }
-    $query = "SELECT firstname, lastname, email, password FROM users WHERE email = '$user'";
+    $query = "SELECT u.firstname, u.lastname, u.email FROM users u WHERE u.email = '$user'";
     $result = pg_query($db, $query);
     $row = pg_fetch_assoc($result);
     if (!$result) {
@@ -177,7 +177,22 @@
 			<?php
         echo "<tr><td class='form-title'> <b>Profile</b> </td></tr>";
         echo "<tr><td class='form-field'> Name: ".$row['firstname']." ".$row['lastname']."</td></tr>";
-        echo "<tr><td class='form-field'> Password: ".$row['password']."</td></tr>";
+        echo "<tr><td class='form-field'> Email: ".$row['email']."</td></tr>";
+        $query = "SELECT COUNT(*) AS numproj FROM project_advertised WHERE uemail = '$user'";
+        $result = pg_query($db, $query);
+        $row = pg_fetch_assoc($result);
+        if (!$result) {
+          echo "Failed to get number of projects created";
+        }
+        echo "<tr><td class='form-field'><a href= \"myprojects.php\"> No. of Projects Created: ".$row['numproj']." </a></td></tr>";
+        $query = "SELECT COUNT(*) AS projfunded FROM fund WHERE uemail = '$user'";
+        $result = pg_query($db, $query);
+        $row = pg_fetch_assoc($result);
+        if (!$result) {
+          echo "Failed to get number of projects funded";
+        }
+        echo "<tr><td class='form-field'><a href= \"fundhistory.php\"> No. of Projects Funded: ".$row['projfunded']." </a></td></tr>";
+        echo "<tr><td class='form-field'><a href= \"changepw.php\"> Change Password </a></td></tr>";
 			?>
 		</tbody>
 	</table>

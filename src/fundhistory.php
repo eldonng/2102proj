@@ -438,8 +438,8 @@ $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres pass
     exit;
   }
   $user = $_SESSION['email'];
-  $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where
-  uemail = '$user'");
+  $query = pg_query($db, "SELECT p.title, (p.amountfund*100/p.targetamount) as pctamount, f.amountfunded, p.targetamount, p.projectid, p.enddate FROM project_advertised p, fund f where
+  f.uemail = '$user' AND p.projectid = f.pprojectid");
   if (!$query) {
   echo "An error occured while querying DB.\n";
   exit;
@@ -451,7 +451,7 @@ $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres pass
     <table class='rg-table' summary='CrowdFund'>
       <caption class='rg-header'>
         <span class='rg-hed'>
-          <h1>My Projects</h1>
+          <h1>Projects Funded By <?php echo("$user") ?></h1>
           <?php
             echo ("<div class='userProfile'>Logged in as: ".$user."</div>")
           ?>
@@ -466,6 +466,7 @@ $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres pass
       <thead>
         <tr>
           <th class='text '>Project Title</th>
+          <th class=' '>Contributed Amount</th>
           <th class=' '>% Funded</th>
           <th class=' '>Target</th>
           <th class=' '>End Date</th>
@@ -477,6 +478,7 @@ $db = pg_connect("host=localhost port=5432 dbname=projectdemo user=postgres pass
             $projectid = $row['projectid'];
             echo "<tr>";
             echo "<td class='text ' data-title='Project Title'><a href=\"viewproject.php?projectid=".$row['projectid']."\">".$row['title']."</a></td>";
+            echo "<td class='text' data-title='Contributed Amount'>".$row['amountfunded']."</td>";
             if ($row['pctamount'] >= 100){
               echo "<td class='text' data-title='% Funded'><progress class=\"progress is-funded show-value\" value=\"".$row['pctamount']."\" max=\"100\"></progress>
               </td>";
