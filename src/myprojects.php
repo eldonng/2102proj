@@ -18,14 +18,6 @@ $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres passwor
     exit;
   }
   $user = $_SESSION['email'];
-<<<<<<< HEAD
-  $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where
-  uemail = '$user'");
-  if (!$query) {
-  echo "An error occured while querying DB.\n";
-  exit;
-}
-=======
   $queryAdmin = "SELECT email, firstname FROM users where admin = false AND email = '$user';";
   $result = pg_query($db, $queryAdmin);
   if (!$result) {
@@ -34,7 +26,6 @@ $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres passwor
 	} else {
     $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised");
   }
->>>>>>> 0993079e99d2dc6eb9a36f2c0ba5524cf730e07a
 ?>
 
 <body>
@@ -49,10 +40,7 @@ $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres passwor
         </span>
         <span class='rg-dek'>
         <div class='user-bar'>
-<<<<<<< HEAD
-=======
           <a href="home.php">Home |</a>
->>>>>>> 0993079e99d2dc6eb9a36f2c0ba5524cf730e07a
           <a href="profile.php">Profile |</a>
           <a href="logout.php">Logout</a>
         </div>
