@@ -343,7 +343,11 @@
     exit;
   }
   $projectid = $_GET["projectid"];
-  $uemail = $_SESSION["email"];
+  if ($_SESSION["email"] != null) {
+    $uemail = $_SESSION["email"];
+  }  else {
+    header("Location: index.php"); /* Redirect browser */
+  }
   $query = "SELECT u.firstname, u.lastname, p.uemail as powner, p.title, p.startdate, p.enddate, p.category, (p.amountfund*100/p.targetamount) as pctamount,
           p.amountfund, p.targetamount, p.description, p.status FROM project_advertised p, users u WHERE p.projectid = '$projectid' AND u.email = p.uemail";
   $result = pg_query($db, $query);
@@ -372,7 +376,7 @@
       }
     }
 
-    $query = "SELECT u.firstname, u.lastname, p.uemail as powner, p.title, p.startdate, p.enddate, p.category, (p.amountfund*100/p.targetamount) as pctamount,
+    $query4 = "SELECT u.firstname, u.lastname, p.uemail as powner, p.title, p.startdate, p.enddate, p.category, (p.amountfund*100/p.targetamount) as pctamount,
             p.amountfund, p.targetamount, p.description, p.status FROM project_advertised p, users u WHERE p.projectid = '$projectid' AND u.email = p.uemail";
     $result4 = pg_query($db, $query4);
     $row = pg_fetch_assoc($result4);
@@ -395,7 +399,7 @@
     </span>
     <span class='rg-dek'>
     <div class='user-bar'>
-      <a href="">Profile |</a>
+      <a href="profile.php">Profile |</a>
       <a href="logout.php">Logout</a>
     </div>
     </span>
