@@ -6,7 +6,166 @@
     <title>CrowdFund - Profile Page</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-    <link rel="stylesheet" href="formstyle.css">
+    <!-- <link rel="stylesheet" href="formstyle.css">
+    <link rel="stylesheet" href="style.css"> -->
+
+    <style media="screen">
+
+    a {
+    color: #222;
+    text-decoration: none;
+  }
+  a:visited {
+    color: #222;
+  }
+  a:hover {
+    color: grey;
+  }
+  body {
+    padding-top: 10px;
+    font: 400 18px/1.5 "Roboto", sans-serif;
+    background-color: #f4f4f4;
+    width: 100%;
+    margin: auto;
+  }
+  table {
+    border-spacing: 10px;
+    border-collapse: separate;
+    width: 30%;
+    padding: 8px;
+    background: #f4f4f4;
+    }
+  tbody {
+    /* border: 1px solid #c9b7a2; */
+    /* float: left; */
+    width: 30%;
+    background: #f4f4f4;
+  }
+  textarea {
+    resize: none;
+  }
+  .form-container {
+    background: #f4f4f4;
+    text-decoration: none;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+     }
+  .form-field {
+     border: 2px solid #c9b7a2;
+     background: white;
+     color: black  ;
+     padding:8px;
+     width:200px;
+     }
+  .form-fieldLong {
+    border: 2px solid #c9b7a2;
+    background: white;
+    color: black;
+    padding: 8px;
+    width: 280px;
+    height: 70px;
+    }
+  .form-field:focus {
+    background: #fff;
+    border-color: #6CBEEC;
+    color: black;
+    }
+  .form-fieldLong:focus {
+    background: #fff;
+    border-color: #6CBEEC;
+    color: black;
+    }
+  .form-container h2 {
+     font-size:18px;
+     font-weight:bold;
+     text-align:center;
+      }
+  .form-title {
+     margin-bottom:10px;
+     color: black ;
+     text-align: left;
+     }
+     .rg-container {
+       width: 85%;
+       margin: auto;
+       padding: 1em 0.5em;
+       color: #222;
+     }
+     .rg-header {
+       margin-bottom: 1em;
+       text-align: left;
+     }
+     .rg-header>* {
+       display: block;
+     }
+     .rg-hed {
+       display: grid;
+       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+       font-weight: bold;
+     }
+     .rg-hed .title {
+       font-size: 1.8em;
+       grid-column: 1 / span 1;
+     }
+     .rg-hed .userProfile{
+       grid-column: 3 / span 4;
+       align-self: end;
+       justify-self: end;
+       font-size: 1em;
+     }
+     .rg-dek {
+       display: grid;
+       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+       font-size: 1em;
+     }
+     .rg-dek .action-bar{
+       grid-column: 1 / span 3;
+       align-self: start;
+     }
+     .rg-dek .user-bar{
+       font-size: 0.9em;
+       grid-column: 4 / span 3;
+       grid-row: 1;
+       align-self: start;
+       justify-self: end;
+     }
+   .submit-container {
+     }
+   .submit-button {
+     border: 1px solid white;
+     background: black;
+     color: white;
+     padding: 8.5px 18px;
+     font-size: 14px;
+     text-decoration: none;
+     vertical-align: middle;
+     width: 300px;
+     }
+   .submit-button:hover {
+     border: 1px solid #447314;
+     text-shadow: #31540c 0 1px 0;
+     background: #6aa436;
+     background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
+     color: #fff;
+     }
+   .submit-button:active {
+     text-shadow: #31540c 0 1px 0;
+     border: 1px solid #447314;
+     background: #8dc059;
+     background-image: -ms-linear-gradient(top, #6aa436 0%, #8dc059 100%);
+     color: #fff;
+     }
+   @media screen and (max-width: 600px) {
+     .rg-hed {
+       display: inline-block;
+   }
+     .rg-dek {
+       display: inline-block;
+     }
+   }
+
+  </style>
 </head>
 
 <body>
