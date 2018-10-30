@@ -7,7 +7,7 @@
     <title>CrowdFund - Edit Project</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-    <link rel="stylesheet" href="formstyle.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <?php
@@ -69,42 +69,60 @@
           </script>';
   }
 ?>
-
 <body>
-	<header>
-    <nav>
-    <ul>
-      <li><a href="home.php"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-    </ul>
-  </nav>
-	</header>
-
-    <form class = "form-container" name="add_project" action="editproject.php?projectid=<?php echo $projectid;?>" method="POST" >
-      <h2> Update Project Details </h2>
-      <div class="form-title">Title: </div>
-      <input class="form-field" type="text)" name="title" value ="<?php echo $row[title];?>" />
-      <div class="form-title">Start Date: </div>
-        <input class="form-field" type="date" name="startdate"  value ="<?php echo $row[startdate];?>" />
-
-      <div class="form-title">End Date: </div>
-      <input class="form-field" type="date" name="enddate"  value ="<?php echo $row[enddate];?>"/>
-
-      <div class="form-title">Category: </div>
-      <input class="form-field" type="text" name="category" value ="<?php echo $row[category];?>"/>
-      <div class="form-title">Target Amount: </div>
-      <input class="form-field" type="text" name="targetamount" value ="<?php echo $row[targetamount];?>"/>
-
-      <div class="form-title">Description: </div>
-        <textarea class="form-fieldLong" type="varchar(256)" name="description"/><?php echo $row[description];?></textarea>
-        <div class="submit-container">
-        <input class ="submit-button" type="submit" name="submit" />
-      </div>
-      <div class="submit-container">
-        <input class ="submit-button" type="submit" name="delete" value="Delete" onclick ="return validate_delete()" />
-      </div>
-    </form>
-
+  <form action="editproject.php?projectid=<?php echo $projectid;?>" method="POST" >
+  <div class='rg-container'>
+    <table class='rg-table' summary='CrowdFund'>
+      <caption class='rg-header'>
+        <span class='rg-hed'>
+          <a class='title' href="home.php">CrowdFund</a>
+          <?php
+            echo ("<div class='userProfile'>Logged in as: ".$uemail."</div>")
+          ?>
+        </span>
+        <span class='rg-dek'>
+        <div class='user-bar'>
+          <a href="profile.php">Profile</a> |
+          <a href="logout.php">Logout</a>
+        </div>
+        </span>
+      </caption>
+      <thead>
+        <tr>
+          <th id = "addProject"> Edit a project! <i class="fas fa-edit"></i></th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr id = "projectForm">
+            <td> Title: </td>
+            <td><input class = "form-field" type = "text" name = "title" value ="<?php echo $row[title];?>"  </td>
+          </tr>
+          <tr id = "projectForm">
+            <td> Start Date: </td>
+            <td><input class = "form-field" type = "date" name = "startdate" value ="<?php echo $row[startdate];?>" </td>
+          </tr>
+          <tr id = "projectForm">
+            <td> End Date: </td>
+            <td><input class = "form-field" type = "date" name = "enddate" value ="<?php echo $row[enddate];?>" </td>
+          </tr>
+          <tr id = "projectForm">
+            <td> Category: </td>
+            <td><input class = "form-field" type = "text" name = "category" value ="<?php echo $row[category];?>" </td>
+          </tr>
+          <tr id = "projectForm">
+            <td> Target Amount: </td>
+            <td><input class = "form-field" type = "text" name = "targetamount" value ="<?php echo $row[targetamount];?>"</td>
+          </tr>
+          <tr id = "projectForm">
+            <td> Description: </td>
+            <td><textarea class="form-fieldLong" type="varchar(256)" name="description"/><?php echo $row[description];?></textarea></td>
+          </tr>
+          <tr id = "projectForm">
+            <td></td>
+            <td><input class = "submit-button" type = "submit" name = "submit"</td>
+        </tbody>
+  </div>
+</form>
 </body>
 
 

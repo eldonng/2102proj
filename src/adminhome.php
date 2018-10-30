@@ -12,14 +12,20 @@
 
 <?php
 session_start();
+if($_SESSION['email'] != null) {
+  $user = $_SESSION['email'];
+}  else {
+  header("Location: index.php"); /* Redirect browser */
+}
 $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
    if (!$db) {
     echo "An error occured when connecting to DB.\n";
     exit;
   }
   $user = $_SESSION['email'];
-  $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where
-  uemail = '$user'");
+  $queryAdmin = "SELECT email, firstname FROM users where admin = false AND email = '$user';";
+  $result = pg_query($db, $queryAdmin);
+  $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised");
 ?>
 
 <body>
@@ -64,12 +70,14 @@ $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres passwor
             }
               echo "<td class='text' data-title='Target'>$".$row['targetamount']."</td>";
               echo "<td class='text' data-title='End Date'>".$row['enddate']."</td>";
-              echo "<td class='text' data-title='Project Title'><a href=\"editproject.php?projectid=".$row['projectid']."\">
+              echo "<td class='text project.action' data-title='Project Title'><a href=\"editproject.php?projectid=".$row['projectid']."\">
                 <button type='button' class='modifyButton'>Modify</button></a>
                 </td>";
               echo "</tr>";
           }
+
           ?>
+
       </tbody>
     </table>
   </div>

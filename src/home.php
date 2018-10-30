@@ -24,6 +24,16 @@ $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres passwor
     exit;
   }
   $user = $_SESSION['email'];
+  $queryAdmin = "SELECT email FROM users where admin = true AND email = '$user';";
+  $result = pg_query($db, $queryAdmin);
+  $row = pg_fetch_assoc($result);
+  if($row['email'] == $user) {
+    $style = "";
+  } else {
+    $style = "style='display:none;'";
+  }
+
+
   if (isset($_POST['submit'])) {
       $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where upper(title) like upper('%$_POST[project_title]%') ORDER BY title");
   } else if (isset($_POST['showfunded'])) {
@@ -37,8 +47,7 @@ $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres passwor
 }
 ?>
 
-<body>
-  <div class='rg-container'>
+<body>  <div class='rg-container'>
     <table class='rg-table' summary='CrowdFund'>
       <caption class='rg-header'>
         <span class='rg-hed'>
@@ -49,6 +58,7 @@ $db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres passwor
         </span>
         <span class='rg-dek'>
         <div class='user-bar'>
+          <a <?php echo $style; ?> href = "adminhome.php">Admin | </a>
           <a href="profile.php">Profile</a> |
           <a href="logout.php">Logout</a>
         </div>

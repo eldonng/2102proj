@@ -26,9 +26,9 @@ button {
   border-radius: 12px;
 }
 .modifyButton:hover {
-  background: #6aa436;
-  border:3px solid #6aa436;
-  color: #fff;
+    opacity: 0.8;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* standard template for forms */
@@ -46,29 +46,34 @@ button {
 
      }
   .form-field {
-     border: 2px solid #c9b7a2;
+     border: 1px solid black;
+     border-radius: 10px 10px 10px 10px;
      background: white;
      color: black  ;
      padding:8px;
-     width:280px;
+     width:450px;
      }
   .form-fieldLong {
-    border: 2px solid #c9b7a2;
+    border-radius: 10px 10px 10px 10px;
+    border: 1px solid black;
     background: white;
     color: black;
     padding: 8px;
-    width: 280px;
+    width: 450px;
     height: 70px;
+    resize: none;
     }
 
   .form-field:focus {
      background: #fff;
      border-color: #6CBEEC;
+     border-radius: 10px 10px 10px 10px;
      color: black;
      }
   .form-fieldLong:focus {
     background: #fff;
     border-color: #6CBEEC;
+    border-radius: 10px 10px 10px 10px;
     color: black;
     }
   .form-container h2 {
@@ -87,10 +92,12 @@ button {
      background: black;
      color: white;
      padding: 8.5px 18px;
+     border-radius: 10px 10px 10px 10px;
      font-size: 14px;
+     text-align: center;
      text-decoration: none;
      vertical-align: middle;
-     width: 300px;
+     width: 470px;
      }
   .submit-button:hover {
      border: 1px solid #447314;
@@ -383,6 +390,9 @@ table.rg-table tr {
   border-bottom: 1px solid #ddd;
   color: #222;
 }
+table.rg-table tr#projectForm {
+  border: none;
+}
 
 table.rg-table tr.highlight {
   background-color: #dcf1f0 !important;
@@ -396,6 +406,11 @@ table.rg-table th {
   font-weight: bold;
   padding: 0.35em;
   font-size: 0.9em;
+}
+table.rg-table th#addProject {
+  font-weight: bold;
+  padding: 0.35em;
+  font-size: 1.3em;
 }
 
 table.rg-table td {
