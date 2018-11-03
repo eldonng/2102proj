@@ -225,8 +225,8 @@
         echo "<tr><td class='form-title'> <b>Profile</b> </td></tr>";
         echo "<tr><td class='form-field'> Name: ".$row['firstname']." ".$row['lastname']."</td></tr>";
         echo "<tr><td class='form-field'> Email: ".$row['email']."</td></tr>";
-        echo "<tr><td class='form-field'><a href= \"myprojects.php\"> No. of Projects Created: ".$row2['numproj']." </a></td></tr>";
-        echo "<tr><td class='form-field'><a href= \"fundhistory.php\"> No. of Projects Funded: ".$row3['numfunded']." </a></td></tr>";
+        echo "<tr><td class='form-field'><a href= \"myprojects.php\"><u> No. of Projects Created: ".$row2['numproj']." </u></a></td></tr>";
+        echo "<tr><td class='form-field'><a href= \"fundhistory.php\"><u> No. of Projects Funded: ".$row3['numfunded']."</u></a></td></tr>";
 		?>
 		</tbody>
     <!-- <tbody style="float: right">

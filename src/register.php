@@ -8,35 +8,56 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    <!-- <link rel="stylesheet" href="style.css"> -->
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-    <link rel="stylesheet" href="formstyle.css">
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-    <nav>
-    <ul>
-      <li><a href="index.php"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-      <li><a href="forgotpass.php"><i class="fas fa-question"></i> Forgot Password</a></li>
-    </ul>
-  </nav>
-  </header>
-	<form class = "form-container" name="signup" action="register.php" method="POST" >
-      <div class ="form-title"><h2> Create an Account</h2></div>
-      <div class="form-title">First Name: </div>
-      <input class="form-field" type="text" name="firstname" />
-      <div class="form-title">Last Name: </div>
-      <input class="form-field" type="text" name="lastname" />
-      <div class="form-title">Email Address: </div>
-      <input class="form-field" type="text" name="email" />
-      <div class="form-title">Password: </div>
-      <input class="form-field" type="password") name="password" />
-      <div class="submit-container">
-      <input class ="submit-button" type="submit" name="create" value="Create Account" />
+<form method = "POST" action = "register.php">
+      <div class='rg-container'>
+        <table class='rg-table' summary='CrowdFund'>
+          <caption class='rg-header'>
+            <span class='rg-hed'>
+              <a class='title' href="home.php">CrowdFund</a>
+          </caption>
+          </span>
+          <thead>
+            <tr>
+              <th id = "reset"> Create New Account <i class="fas fa-plus"></i></th>
+            </tr>
+          </thead>
+            <tbody>
+            <tr id = "projectForm">
+                <td> First Name: </td>
+                <td><input class = "form-field" type = "text" name = "firstname"> </td>
+              </tr>
+              <tr id = "projectForm">
+                <td> Last Name: </td>
+                <td><input class = "form-field" type = "text" name = "lastname"> </td>
+              </tr>
+              <tr id = "projectForm">
+                <td> Email Address: </td>
+                <td><input class = "form-field" type = "text" name = "email"> </td>
+              </tr>
+              <tr id = "projectForm">
+                <td> Password: </td>
+                <td><input class = "form-field" type = "password" name = "password"> </td>
+              </tr>
+              <tr id = "projectForm">
+                <td></td>
+              <td><input class = "submit-button" type = "submit" name = "create" value="Create Account"></td>
+              <tr id = "projectForm">
+                <td></td>
+          </tr>
+              </tbody>
+        </table>
       </div>
     </form>
 
   <?php
+    session_start();
+    if($_SESSION['email'] != null) {
+      header("Location: home.php"); /* Redirect browser */
+    }
   	// Connect to the database. Please change the password in the following line accordingly
     $db = pg_connect($_SESSION['dblogin']);
         if (!$db) {
@@ -56,10 +77,12 @@
           echo '<script language="javascript">';
           echo 'alert("Account Created Successfully")';
           echo '</script>';
+          echo '<a href="register.php"><u> Back to Login Page </u></a>';
 		    } else {
           echo '<script language="javascript">';
           echo 'alert("Unable to add user into database, or user already exists")';
           echo '</script>';
+          echo 'Existing user? <a href="forgotpass.php"><u> Reset your password here </u></a>';
         }
       }
     }

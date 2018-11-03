@@ -8,8 +8,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    <!-- <link rel="stylesheet" href="style.css"> -->
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-    <link rel="stylesheet" href="formstyle.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -22,27 +22,48 @@ if($_SESSION['email'] != null) {
 }
 ?>
 
-<header>
-    <nav>
-    <ul>
-    <li><a href="home.php"><i class="fas fa-home"></i> Home</a></li>
-    <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-    </ul>
-  </nav>
-  </header>
-  <form class = "form-container" name="reset" action="changepw.php" method="POST" >
-      <div class ="form-title"><h2> Change Password</h2></div>
-      <div class="form-title">Enter Current Password: </div>
-      <input class="form-field" type="password") name="psw" />
-      <div class="form-title">Enter New Password: </div>
-      <input class="form-field" type="password") name="newPsw" />
-      <div class="form-title">Re-enter New Password: </div>
-      <input class="form-field" type="password") name="reEnterPsw" />
-      <div class="submit-container">
-      <input class ="submit-button" type="submit" name="changepw" value="Change Password" />
+<form method = "POST" action = "changepw.php">
+      <div class='rg-container'>
+        <table class='rg-table' summary='CrowdFund'>
+          <caption class='rg-header'>
+            <span class='rg-hed'>
+              <a class='title' href="home.php">CrowdFund</a>
+          </caption>
+          </span>
+          <span class='rg-dek'>
+            <div class='user-bar'>
+              <a href="profile.php">Profile |</a>
+              <a href="logout.php">Logout</a>
+            </div>
+          </span>
+          <thead>
+            <tr>
+              <th id = "login"> Change Password </th>
+            </tr>
+          </thead>
+            <tbody>
+              <tr id = "projectForm">
+                <td> Enter Current Password: </td>
+                <td><input class = "form-field" type = "password" name = "psw"> </td>
+              </tr>
+              <tr id = "projectForm">
+                <td> Enter New Password: </td>
+                <td><input class = "form-field" type = "password" name = "newPsw"> </td>
+              </tr>
+              <tr id = "projectForm">
+                <td> Re-Enter New Password: </td>
+                <td><input class = "form-field" type = "password" name = "reEnterPsw"> </td>
+              </tr>
+              <tr id = "projectForm">
+                <td></td>
+              <td><input class = "submit-button" type = "submit" name = "changepsw" value="Change Password"></td>
+              <tr id = "projectForm">
+                <td></td>
+          </tr>
+              </tbody>
+        </table>
       </div>
     </form>
-
   <?php
   	// Connect to the database. Please change the password in the following line accordingly
     $db = pg_connect($_SESSION['dblogin']);
@@ -51,7 +72,7 @@ if($_SESSION['email'] != null) {
       exit;
     }
 
-    if (isset($_POST['changepw'])) {
+    if (isset($_POST['changepsw'])) {
       if($_POST[psw] == null || $_POST[newPsw] == null || $_POST[reEnterPsw] == null) {
         echo '<script language="javascript">';
         echo 'alert("Please do not leave any fields empty")';
