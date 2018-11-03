@@ -17,7 +17,7 @@ if($_SESSION['email'] != null) {
 }  else {
   header("Location: index.php"); /* Redirect browser */
 }
-$db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=password");
+$db = pg_connect($_SESSION['dblogin']);
    if (!$db) {
     echo "An error occured when connecting to DB.\n";
     exit;
