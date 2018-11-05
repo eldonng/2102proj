@@ -491,9 +491,6 @@ $db = pg_connect($_SESSION['dblogin']);
             }
               echo "<td class='text' data-title='Target'>$".$row['targetamount']."</td>";
               echo "<td class='text' data-title='End Date'>".$row['enddate']."</td>";
-              echo "<td class='text project.action' data-title='Project Title'><a href=\"editproject.php?projectid=".$row['projectid']."\">
-                <button type='button' class='modifyButton'>Modify</button></a>
-                </td>";
               echo "</tr>";
           }
           // if (isset($_POST['delete'])) {
