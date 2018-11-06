@@ -77,7 +77,7 @@
           echo '<script language="javascript">';
           echo 'alert("Account Created Successfully")';
           echo '</script>';
-          echo '<a href="register.php"><u> Back to Login Page </u></a>';
+          echo '<a href="index.php"><u> Back to Login Page </u></a>';
 		    } else {
           echo '<script language="javascript">';
           echo 'alert("Unable to add user into database, or user already exists")';
