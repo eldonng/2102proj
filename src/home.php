@@ -35,7 +35,10 @@ $db = pg_connect($_SESSION['dblogin']);
   }
 
   $updateExpire = pg_query($db, "update project_advertised set status = 'expired' where now()::date > enddate;");
-
+  if (!$updateExpire) {
+    echo "An error occured while updating expired.\n";
+    exit;
+  }
   if (isset($_POST['submit'])) {
       $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where upper(title) like upper('%$_POST[project_title]%') and category like '%$_POST[category]%' 
         and status <> 'expired' ORDER BY title");
