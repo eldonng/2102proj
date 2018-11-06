@@ -167,19 +167,20 @@
           echo '<script language="javascript">';
           echo 'alert("Select a category!")';
           echo '</script>';
-        }
-
-        $query = "INSERT INTO project_advertised(uemail, projectid, title, startdate, enddate, category, targetamount, description) VALUES('$user', '$uniqueId8' , '$_POST[title]', '$_POST[startdate]', '$_POST[enddate]',
-          '$_POST[category]', '$_POST[targetamount]', '$_POST[description]')";
-        $result = pg_query($db, $query);
-        if (!$result) {
-          echo '<script language="javascript">';
-          echo 'alert("Failed to add project")';
-          echo '</script>';
         } else {
-          echo '<script language="javascript">';
-          echo 'alert("Succesfully added project!")';
-          echo '</script>';
+        
+          $query = "INSERT INTO project_advertised(uemail, projectid, title, startdate, enddate, category, targetamount, description) VALUES('$user', '$uniqueId8' , '$_POST[title]', '$_POST[startdate]', '$_POST[enddate]',
+            '$_POST[category]', '$_POST[targetamount]', '$_POST[description]')";
+          $result = pg_query($db, $query);
+          if (!$result) {
+            echo '<script language="javascript">';
+            echo 'alert("Failed to add project")';
+            echo '</script>';
+          } else {
+            echo '<script language="javascript">';
+            echo 'alert("Succesfully added project!")';
+            echo '</script>';
+          }
         }
     }
     ?>
