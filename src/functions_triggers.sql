@@ -25,7 +25,7 @@ CREATE TRIGGER checkNegativeFunds
 BEFORE INSERT
 ON fund
 FOR EACH ROW
-when (NEW.amountfunded < 0)
+when (NEW.amountfunded <= 0)
 EXECUTE PROCEDURE checkNegativeFunds();
 
 
