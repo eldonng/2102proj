@@ -448,28 +448,26 @@ $db = pg_connect($_SESSION['dblogin']);
 
 <body>
   <div class='rg-container'>
-    <table class='rg-table' summary='CrowdFund'>
       <caption class='rg-header'>
         <span class='rg-hed'>
-          <h1>Projects Funded By <?php echo("$user") ?></h1>
+          <a class='title' href='home.php'>CrowdFund</a>
           <?php
             echo ("<div class='userProfile'>Logged in as: ".$user."</div>")
           ?>
         </span>
         <span class='rg-dek'>
         <div class='user-bar'>
-          <a href="home.php">Home |</a>
           <a href="profile.php">Profile |</a>
           <a href="logout.php">Logout</a>
         </div>
       </span>
+      <table class='rg-table' style='width: 85%;' summary='CrowdFund'>
       <thead>
         <tr>
           <th class='text '>Project Title</th>
-          <th class=' '>Contributed Amount</th>
           <th class=' '>% Funded</th>
           <th class=' '>Target</th>
-          <th class=' '>End Date</th>
+          <th class=' '>Contributed Amount</th>
         </tr>
       </thead>
       <tbody>
@@ -478,7 +476,6 @@ $db = pg_connect($_SESSION['dblogin']);
             $projectid = $row['projectid'];
             echo "<tr>";
             echo "<td class='text ' data-title='Project Title'><a href=\"viewproject.php?projectid=".$row['projectid']."\">".$row['title']."</a></td>";
-            echo "<td class='text' data-title='Contributed Amount'>".$row['amountfunded']."</td>";
             if ($row['pctamount'] >= 100){
               echo "<td class='text' data-title='% Funded'><progress class=\"progress is-funded show-value\" value=\"".$row['pctamount']."\" max=\"100\"></progress>
               </td>";
@@ -490,11 +487,13 @@ $db = pg_connect($_SESSION['dblogin']);
               </td>";
             }
               echo "<td class='text' data-title='Target'>$".$row['targetamount']."</td>";
-              echo "<td class='text' data-title='End Date'>".$row['enddate']."</td>";
+              echo "<td class='text' data-title='Contributed Amount'>$".$row['amountfunded']."</td>";
+              // echo "<td class='text' data-title='End Date'>".$row['enddate']."</td>";
+              // echo "<td class='text project.action' data-title='Project Title'><a href=\"editproject.php?projectid=".$row['projectid']."\">
+              //   <button type='button' class='modifyButton'>Modify</button></a>
+              //   </td>";
               echo "</tr>";
           }
-          // if (isset($_POST['delete'])) {
-
           ?>
 
       </tbody>
