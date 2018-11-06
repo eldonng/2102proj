@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CrowdFund - Add Project</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-    <link rel="stylesheet" <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">     
+    <link rel="stylesheet" <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -55,7 +55,7 @@
                       </button>
                     </div>
                     <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                      <div class="dropdown-content">                        
+                      <div class="dropdown-content">
                         <a onclick="updateCategory('Arts')" value="arts" class="dropdown-item">
                           Arts
                         </a>
@@ -67,7 +67,7 @@
                         </a>
                         <a onclick="updateCategory('Games')" value="games" class="dropdown-item">
                           Games
-                        </a>                        
+                        </a>
                       </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
         document.addEventListener('click', function (event) {
           closeDropdowns();
         });
-      }            
+      }
 
       function closeDropdowns() {
         $dropdowns.forEach(function ($el) {
@@ -144,7 +144,7 @@
 
       function getAll(selector) {
         return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
-      }      
+      }
       });
 
       function updateCategory(newCategory) {
@@ -162,26 +162,28 @@
     }
     $uniqueId = uniqid();
     $uniqueId8 = substr($uniqueId, 0, 8);
+    $sameNameError = 'Project with same title has already been created!';
+
     if (isset($_POST['submit'])) {
         if ($_POST[category] == "test") {
           echo '<script language="javascript">';
           echo 'alert("Select a category!")';
           echo '</script>';
         } else {
-        
-          $query = "INSERT INTO project_advertised(uemail, projectid, title, startdate, enddate, category, targetamount, description) VALUES('$user', '$uniqueId8' , '$_POST[title]', '$_POST[startdate]', '$_POST[enddate]',
+            $query = "SELECT add_project ('$user', '$uniqueId8','$_POST[title]', '$_POST[startdate]', '$_POST[enddate]',
             '$_POST[category]', '$_POST[targetamount]', '$_POST[description]')";
-          $result = pg_query($db, $query);
-          if (!$result) {
-            echo '<script language="javascript">';
-            echo 'alert("Failed to add project")';
-            echo '</script>';
-          } else {
-            echo '<script language="javascript">';
-            echo 'alert("Succesfully added project!")';
-            echo '</script>';
+            $result = pg_query($db, $query);
+            $row = pg_fetch_array($result);
+            if ($row[0] == $sameNameError) {
+              echo '<script language="javascript">';
+              echo 'alert("Failed to add project")';
+              echo '</script>';
+            } else {
+              echo '<script language="javascript">';
+              echo 'alert("Succesfully added project!")';
+              echo '</script>';
+            }
           }
-        }
     }
     ?>
 </body>
