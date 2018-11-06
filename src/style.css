@@ -285,6 +285,7 @@ textarea {
   overflow: hidden;
   padding: 0;
   width: 100%;
+  z-index: -1;
 }
 
 .progress::-webkit-progress-bar {
@@ -416,16 +417,31 @@ a:hover {
 
 .searchButton {
   position: absolute;
-  right: -50px;
+  right: -40px;
   width: 40px;
   height: 36px;
   border: 1px solid #222;
+  border-left: 0px;
   background: #222;
   text-align: center;
   color: #fff;
   border-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
   cursor: pointer;
   font-size: 20px;
+}
+
+.categoryDropdown {
+  position: absolute;
+  left: -160px;  
+}
+
+.categoryButton {
+  height: 36px;
+  border-radius: 0px;
+  border: 3px solid black;
+  border-left: 2px solid black;
 }
 
 /*Resize the wrap to see the search bar change!*/
