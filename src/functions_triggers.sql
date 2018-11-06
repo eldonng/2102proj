@@ -62,3 +62,22 @@ ON project_advertised
 FOR EACH ROW
 when (NEW.amountfund >= OLD.targetamount)
 EXECUTE PROCEDURE updatestatus();
+
+--Check if user has previously funded the same project
+CREATE OR REPLACE FUNCTION updatefund()
+RETURNS TRIGGER AS $$
+BEGIN
+IF EXISTS(SELECT * FROM fund WHERE pprojectid = NEW.pprojectid AND uemail = NEW.uemail)
+THEN UPDATE fund SET amountfunded = amountfunded + NEW.amountfunded;
+RETURN NULL;
+ELSE
+RETURN NEW;
+END IF;
+END; $$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER updatefund
+BEFORE INSERT
+ON fund
+FOR EACH ROW
+EXECUTE PROCEDURE updatefund();
