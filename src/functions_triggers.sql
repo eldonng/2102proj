@@ -40,6 +40,7 @@ LANGUAGE PLPGSQL;
 
 CREATE TRIGGER checkInvalidFundsUpdate
 BEFORE UPDATE
+OF amountfund
 ON project_advertised
 FOR EACH ROW
 when (NEW.amountfund <= OLD.amountfund)

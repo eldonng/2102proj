@@ -34,13 +34,15 @@ $db = pg_connect($_SESSION['dblogin']);
     $style = "style='display:none;'";
   }
 
+  $updateExpire = pg_query($db, "update project_advertised set status = 'expired' where now()::date > enddate;");
 
   if (isset($_POST['submit'])) {
-      $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where upper(title) like upper('%$_POST[project_title]%') and category like '%$_POST[category]%' ORDER BY title");
+      $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where upper(title) like upper('%$_POST[project_title]%') and category like '%$_POST[category]%' 
+        and status <> 'expired' ORDER BY title");
   } else if (isset($_POST['showfunded'])) {
-    $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where (amountfund*100/targetamount) >= 100 ORDER BY title");
+    $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where (amountfund*100/targetamount) >= 100 and status <> 'expired' ORDER BY title");
   } else {
-      $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised ORDER BY title");
+      $query = pg_query($db, "SELECT title, (amountfund*100/targetamount) as pctamount, targetamount, projectid, enddate FROM project_advertised where status <> 'expired' ORDER BY title");
   }
   if (!$query) {
     echo $_POST[category];
