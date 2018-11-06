@@ -44,7 +44,7 @@
     </form>
   <?php
     session_start();
-    $_SESSION['dblogin'] = "host=localhost port=5432 dbname=projectdemo user=postgres password=cowcowmilk";
+    $_SESSION['dblogin'] = "host=localhost port=5432 dbname=postgres user=postgres password=password";
     if($_SESSION['email'] != null) {
       header("Location: home.php"); /* Redirect browser */
     }
