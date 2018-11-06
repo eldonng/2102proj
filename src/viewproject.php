@@ -358,6 +358,8 @@
   if (isset($_POST['submit'])) {
     $query2 = "INSERT INTO fund VALUES('$uemail', '$_POST[amountfunded]', '$projectid')";
     $result2 = pg_query($db, $query2);
+    $rowResult = pg_fetch_array($result2);
+    echo $rowResult;
     if (!$result2) {
       echo '<script language="javascript">';
       echo 'alert("Failed to add funds!")';
