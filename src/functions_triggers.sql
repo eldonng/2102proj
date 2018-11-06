@@ -43,4 +43,22 @@ BEFORE UPDATE
 ON project_advertised
 FOR EACH ROW
 when (NEW.amountfund < OLD.amountfund)
-EXECUTE PROCEDURE checkNegativeFunds();
+EXECUTE PROCEDURE checkNegativeFundsUpdate();
+
+
+--Check if fund target has been reached
+CREATE OR REPLACE FUNCTION updatestatus()
+RETURNS TRIGGER AS $$
+BEGIN
+NEW.status = 'funded';
+RETURN NEW;
+END; $$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER updatestatus
+BEFORE UPDATE
+OF amountfund
+ON project_advertised
+FOR EACH ROW
+when (NEW.amountfund >= OLD.targetamount)
+EXECUTE PROCEDURE updatestatus();
