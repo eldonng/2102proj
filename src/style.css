@@ -53,6 +53,7 @@ button {
      padding:8px;
      width:450px;
      }
+
   .form-fieldLong {
     border-radius: 10px 10px 10px 10px;
     border: 1px solid black;
@@ -66,16 +67,20 @@ button {
 
   .form-field:focus {
      background: #fff;
-     border-color: #6CBEEC;
+     border-color: #5698BC;
      border-radius: 10px 10px 10px 10px;
      color: black;
+     outline: none;
      }
+
   .form-fieldLong:focus {
     background: #fff;
     border-color: #6CBEEC;
     border-radius: 10px 10px 10px 10px;
     color: black;
+    outline: none;
     }
+
   .form-container h2 {
      font-size:18px;
      font-weight:bold;
@@ -413,6 +418,12 @@ table.rg-table th#addProject {
   font-size: 1.3em;
 }
 
+table.rg-table th#profileHeader {
+  font-weight: bold;
+  padding: 0.35em;
+  font-size: 1.3em;
+}
+
 table.rg-table td {
   padding: 0.35em;
   font-size: 0.9em;
@@ -421,6 +432,10 @@ table.rg-table td {
 table.rg-table td a {
   color: #222;
   text-decoration: none;
+}
+
+table.rg-table td a#profileLink{
+  text-decoration: underline;
 }
 
 table.rg-table td a:visited {
