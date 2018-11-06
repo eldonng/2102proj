@@ -26,7 +26,7 @@ BEFORE INSERT
 ON fund
 FOR EACH ROW
 when (NEW.amountfunded <= 0)
-EXECUTE PROCEDURE checkNegativeFunds();
+EXECUTE PROCEDURE checkInvalidFunds();
 
 
 --Check Negative Values for project_advertised table
@@ -43,7 +43,7 @@ BEFORE UPDATE
 ON project_advertised
 FOR EACH ROW
 when (NEW.amountfund <= OLD.amountfund)
-EXECUTE PROCEDURE checkNegativeFundsUpdate();
+EXECUTE PROCEDURE checkInvalidFundsUpdate();
 
 
 --Check if fund target has been reached
