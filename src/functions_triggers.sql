@@ -13,7 +13,7 @@ categoryadd VARCHAR(64), targetamountadd INTEGER, descriptionadd VARCHAR(256))
     $BODY$ LANGUAGE plpgsql;
 
 --Check Negative Values for Funds
-CREATE OR REPLACE FUNCTION checkNegativeFunds()
+CREATE OR REPLACE FUNCTION checkInvalidFunds()
 RETURNS TRIGGER AS $$
 BEGIN
 RAISE EXCEPTION 'Unable to add funds!';
@@ -21,7 +21,7 @@ RETURN NULL;
 END; $$
 LANGUAGE PLPGSQL;
 
-CREATE TRIGGER checkNegativeFunds
+CREATE TRIGGER checkInvalidFunds
 BEFORE INSERT
 ON fund
 FOR EACH ROW
@@ -30,7 +30,7 @@ EXECUTE PROCEDURE checkNegativeFunds();
 
 
 --Check Negative Values for project_advertised table
-CREATE OR REPLACE FUNCTION checkNegativeFundsUpdate()
+CREATE OR REPLACE FUNCTION checkInvalidFundsUpdate()
 RETURNS TRIGGER AS $$
 BEGIN
 RAISE EXCEPTION 'Unable to add funds!';
@@ -38,11 +38,11 @@ RETURN NULL;
 END; $$
 LANGUAGE PLPGSQL;
 
-CREATE TRIGGER checkNegativeFundsUpdate
+CREATE TRIGGER checkInvalidFundsUpdate
 BEFORE UPDATE
 ON project_advertised
 FOR EACH ROW
-when (NEW.amountfund < OLD.amountfund)
+when (NEW.amountfund <= OLD.amountfund)
 EXECUTE PROCEDURE checkNegativeFundsUpdate();
 
 
