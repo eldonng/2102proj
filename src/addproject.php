@@ -159,21 +159,29 @@
           echo '<script language="javascript">';
           echo 'alert("Select a category!")';
           echo '</script>';
+    }
+    else if($_POST[title] == null OR $_POST[startdate] == null OR $_POST[enddate] == null  OR
+  $_POST[targetamount] == null OR $_POST[description] == null) {
+      echo '<script language="javascript">';
+      echo 'alert("Failed to add project")';
+      echo '</script>';
+    }
+    else {
+        $query = "SELECT add_project ('$user', '$uniqueId8','$_POST[title]', '$_POST[startdate]', '$_POST[enddate]',
+        '$_POST[category]', '$_POST[targetamount]', '$_POST[description]')";
+        $result = pg_query($db, $query);
+        echo $result;
+        $row = pg_fetch_array($result);
+        if ($row[0] == $sameNameError) {
+          echo '<script language="javascript">';
+          echo 'alert("Failed to add project")';
+          echo '</script>';
         } else {
-            $query = "SELECT add_project ('$user', '$uniqueId8','$_POST[title]', '$_POST[startdate]', '$_POST[enddate]',
-            '$_POST[category]', '$_POST[targetamount]', '$_POST[description]')";
-            $result = pg_query($db, $query);
-            $row = pg_fetch_array($result);
-            if ($row[0] == $sameNameError) {
-              echo '<script language="javascript">';
-              echo 'alert("Failed to add project")';
-              echo '</script>';
-            } else {
-              echo '<script language="javascript">';
-              echo 'alert("Succesfully added project!")';
-              echo '</script>';
-            }
-          }
+          echo '<script language="javascript">';
+          echo 'alert("Succesfully added project!")';
+          echo '</script>';
+        }
+      }
     }
     ?>
 </body>
